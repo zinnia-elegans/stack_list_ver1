@@ -6,6 +6,11 @@
 
 require('./bootstrap');
 require('./jquery-3.5.1.min.js');
+require('./oauth_t.js');
+require('./oauth.js');
+require('./sha1.js');
+require('./tweet.js');
+require('./window.js');
 
 
 window.Vue = require('vue');

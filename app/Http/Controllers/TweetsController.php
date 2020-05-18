@@ -13,50 +13,30 @@ class TweetsController extends Controller
 
      // 検索ツイート取得
      public function tweet(){
-        $statuses = \Twitter::get('search/tweets', array("q" =>"#今日の積み上げ", "count" => 20));
-        return view('index',['statuses' => $statuses]);
+        $tweets = \Twitter::get('search/tweets', array("q" =>"#今日の積み上げ", "count" => 20));
+        return view('index',['statuses' => $tweets]);
     }
     
-    public function index(){
+    public function index(Request $request){
 
+
+        $statuses = \Twitter::get('statuses/user_timeline',["count" => 10]);
         $user = Auth::user();
-        $search = ["q" => "今日の積み上げ", "count" => 10];
-        $statuses = \Twitter::get('statuses/user_timeline',$search);
-
+    
         return view('tweets.index', [
             'user' => $user,
             'statuses' => $statuses,
+
         ]);
     }
 
    
-    public function create(){
+    public function post(){
 
+        $tweet = \Twitter::post("statuses/update", array('status' => 'テスト投稿'));
+
+        return view('tweets.index', ['tweet' => $tweet]);
     }
 
-  
-    public function store(){
-
-    }
-
-   
-    public function show(){
-        
-    }
-
-    
-    public function edit(){
-        
-    }
-
-    
-    public function update(){
-        
-    }
-
-   
-    public function destroy(){
-
-}
 
 }

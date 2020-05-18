@@ -49784,15 +49784,15 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./tweet.js */ "./resources/js/tweet.js");
-
 __webpack_require__(/*! ./jquery-3.5.1.min.js */ "./resources/js/jquery-3.5.1.min.js");
 
-__webpack_require__(/*! ./sha1.js */ "./resources/js/sha1.js");
+__webpack_require__(/*! ./oauth_t.js */ "./resources/js/oauth_t.js");
 
 __webpack_require__(/*! ./oauth.js */ "./resources/js/oauth.js");
 
-__webpack_require__(/*! ./oauth_t.js */ "./resources/js/oauth_t.js");
+__webpack_require__(/*! ./sha1.js */ "./resources/js/sha1.js");
+
+__webpack_require__(/*! ./tweet.js */ "./resources/js/tweet.js");
 
 __webpack_require__(/*! ./window.js */ "./resources/js/window.js");
 
@@ -59754,15 +59754,15 @@ function binb2b64(d) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var data = document.forms['tweet_data'];
+var data = [];
 
 function twitter_init() {
   OAuth.initialize('mlUDFwTADp67UEpL0iNsEzr3Du0');
   OAuth.popup('twitter', function (err, res) {
-    localStorage.setItem("1222697852377260040-JNbjJJdjT0aKyQtdWi4XUFXTGu6CQz", res.oauth_token);
-    localStorage.setItem("xtGLShtoW8puzF04xPRWcL80owrXTuCOuZH5Fosm4JIXS", res.oauth_token_secret);
+    localStorage.setItem("oauth_token", res.oauth_token);
+    localStorage.setItem("oauth_token_secret", res.oauth_token_secret);
   }).then(function () {
-    OAuth.callback('twitter', "http://127.0.0.1:8000/auth/twitter/callback");
+    OAuth.callback('twitter', "http://oldera.html.xdomain.jp");
   });
 }
 
@@ -59773,8 +59773,8 @@ function getTwitterTL() {
     count: 10,
     consumerKey: "d9ktYK8Pj12uAiBB6qX4wZGwD",
     consumerSecret: "X2j9gdo1TjtfQLN86c43zk1KJCwLsJOfSlCHHMwVBUJS47eMsh",
-    accessToken: localStorage.getItem("1222697852377260040-JNbjJJdjT0aKyQtdWi4XUFXTGu6CQz"),
-    tokenSecret: localStorage.getItem("xtGLShtoW8puzF04xPRWcL80owrXTuCOuZH5Fosm4JIXS")
+    accessToken: localStorage.getItem("oauth_token"),
+    tokenSecret: localStorage.getItem("oauth_token_secret")
   };
   var accessor = {
     consumerSecret: options.consumerSecret,
@@ -59810,8 +59810,8 @@ function SendTwitter(tweets_txt) {
     apiURL: "https://api.twitter.com/1.1/statuses/update.json",
     consumerKey: "d9ktYK8Pj12uAiBB6qX4wZGwD",
     consumerSecret: "X2j9gdo1TjtfQLN86c43zk1KJCwLsJOfSlCHHMwVBUJS47eMsh",
-    accessToken: localStorage.getItem("1222697852377260040-JNbjJJdjT0aKyQtdWi4XUFXTGu6CQz"),
-    tokenSecret: localStorage.getItem("xtGLShtoW8puzF04xPRWcL80owrXTuCOuZH5Fosm4JIXS")
+    accessToken: localStorage.getItem("oauth_token"),
+    tokenSecret: localStorage.getItem("oauth_token_secret")
   };
   var accessor = {
     consumerSecret: options.consumerSecret,

@@ -12,5 +12,6 @@ Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCall
 Route::get('/', 'TweetsController@tweet');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('tweets', 'TweetsController', ['only' => ['index', 'create', 'store', 'show','edit', 'update', 'destoru']]);
+    Route::get('tweets', 'TweetsController@index');
+    Route::post('tweets', 'TweetsController@post');
 });
