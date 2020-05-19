@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Abraham\TwitterOAuth\TwitterOAuth;
-use App\Facades\Twitter;
+// use App\Facades\Twitter;
 use Auth;
 
 class TweetsController extends Controller
@@ -33,11 +33,14 @@ class TweetsController extends Controller
    
     public function post(){
         $statuses = \Twitter::get('statuses/user_timeline',["count" => 10]);
-        $post = \Twitter::post("statuses/update", array('status' => 'テスト投稿'));
+
+        $post = '';
+        $text = \Twitter::post('statuses/update', array("status" => "{{ $post }}"));
 
         return view('tweets.index', [
-            'post' => $post,
-            'statuses' => $statuses
+            'statuses' => $statuses,
+            'text' => $text,
+            'post' => $post
             ]);
     }
 

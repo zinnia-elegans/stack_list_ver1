@@ -76,6 +76,9 @@ function SendTwitter(tweets_txt){
     let url = OAuth1.addToURL(message.action, message.parameters);
     
     $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },    
         type: options.method,
         url: url
     });
@@ -86,7 +89,7 @@ function cbname1(data){
     while(count<10){
         tweetsList.push(data[count].text);
         let str_key = 'MyTL_tw' + count;
-        localStorage.setItem(str_key ,tweetsList[count]);　
+        localStorage.setItem(str_key ,tweetsList[count]);
         count = count + 1;
     }
 }

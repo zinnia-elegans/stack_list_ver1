@@ -19,7 +19,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea class="form-control @error('text') is-invalid @enderror" name="tweet" placeholder="＃今日の積み上げをツイートしよう！" required autocomplete="text" rows="4"></textarea>
+                                <textarea class="form-control @error('text') is-invalid @enderror" name="tweet" placeholder="＃今日の積み上げをツイートしよう！" required autocomplete="text" rows="4">{{ $post }}</textarea>
                                     
                                     @error('text')
                                         <span class="invalid-feedback" role="alert">
