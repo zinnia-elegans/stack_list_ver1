@@ -8,7 +8,7 @@
                 <div class="card-header p-3 w-100 d-flex">ツイート投稿</div>
                     <div class="card-body"> 
                         
-                        <form method="POST" action="tweets">                         
+                        <form method="POST" action="">                         
                             @csrf
                             
                             <div class="form-group row mb-0">
@@ -41,7 +41,7 @@
                         </form>
                         <div class="mt-5">
                         <h5 class="mt-7 text-center"><strong>#あなたの積み上げ</strong></h5>
-                            @foreach ($statuses->statuses as $tweet)
+                            @foreach ($statuses as $tweet)
                                 <div class="card mb-2">
                                     <div class="card-body">
                                         <div class="media">

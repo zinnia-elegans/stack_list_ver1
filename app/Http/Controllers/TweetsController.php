@@ -32,10 +32,13 @@ class TweetsController extends Controller
 
    
     public function post(){
+        $statuses = \Twitter::get('statuses/user_timeline',["count" => 10]);
+        $post = \Twitter::post("statuses/update", array('status' => 'テスト投稿'));
 
-        $tweet = \Twitter::post("statuses/update", array('status' => 'テスト投稿'));
-
-        return view('tweets.index', ['tweet' => $tweet]);
+        return view('tweets.index', [
+            'post' => $post,
+            'statuses' => $statuses
+            ]);
     }
 
 
