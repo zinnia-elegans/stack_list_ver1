@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Abraham\TwitterOAuth\TwitterOAuth;
-// use App\Facades\Twitter;
+use App\Facades\Twitter;
 use Auth;
 
 class TweetsController extends Controller
@@ -14,19 +13,16 @@ class TweetsController extends Controller
      
      public function tweet(){
         // 検索ツイート取得
-        $tweets = \Twitter::get('search/tweets', array("q" =>"#今日の積み上げ", "count" => 20));
+        $tweets = \Twitter::get('search/tweets', array("q" =>"#今日の積み上げ","count" => 20));
         return view('index',['statuses' => $tweets]);
     }
     
     public function index(Request $request){
-        // ユーザーのタイムライン取得
-        $statuses = \Twitter::get('statuses/user_timeline',["count" => 10]);
-        $user = Auth::user();
+
+        $statuses = \Twitter::get('statuses/user_timeline',["count" => 30]);
     
         return view('tweets.index', [
-            'user' => $user,
             'statuses' => $statuses,
-
         ]);
     }
 
