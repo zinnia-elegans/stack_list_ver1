@@ -37,6 +37,7 @@ function getTwitterTL(){
     OAuth1.setTimestampAndNonce(message);
     OAuth1.SignatureMethod.sign(message, accessor);
     var url = OAuth1.addToURL(message.action, message.parameters);
+    
     $.ajax({
         type: options.method,
         url: url,

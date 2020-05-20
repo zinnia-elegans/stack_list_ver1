@@ -11,15 +11,15 @@ use Auth;
 class TweetsController extends Controller
 {
 
-     // 検索ツイート取得
+     
      public function tweet(){
+        // 検索ツイート取得
         $tweets = \Twitter::get('search/tweets', array("q" =>"#今日の積み上げ", "count" => 20));
         return view('index',['statuses' => $tweets]);
     }
     
     public function index(Request $request){
-
-
+        // ユーザーのタイムライン取得
         $statuses = \Twitter::get('statuses/user_timeline',["count" => 10]);
         $user = Auth::user();
     
@@ -31,16 +31,14 @@ class TweetsController extends Controller
     }
 
    
-    public function post(){
+    public function post(Request $request){
         $statuses = \Twitter::get('statuses/user_timeline',["count" => 10]);
-
-        $post = '';
-        $text = \Twitter::post('statuses/update', array("status" => "{{ $post }}"));
+        $tweet = $request->tweet;
+        $text = \Twitter::post('statuses/update', array("status" => $tweet));
 
         return view('tweets.index', [
             'statuses' => $statuses,
             'text' => $text,
-            'post' => $post
             ]);
     }
 

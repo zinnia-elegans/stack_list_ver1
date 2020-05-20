@@ -7,8 +7,7 @@
             <div class="card">
                 <div class="card-header p-3 w-100 d-flex">ツイート投稿</div>
                     <div class="card-body"> 
-                        
-                        <form method="POST" action="">                         
+                        <form method="post" action="">                         
                             @csrf
                             
                             <div class="form-group row mb-0">
@@ -19,7 +18,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                <textarea class="form-control @error('text') is-invalid @enderror" name="tweet" placeholder="＃今日の積み上げをツイートしよう！" required autocomplete="text" rows="4">{{ $post }}</textarea>
+                                <textarea class="form-control" name="tweet" required autocomplete="text" rows="4"></textarea>
                                     
                                     @error('text')
                                         <span class="invalid-feedback" role="alert">
@@ -29,9 +28,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 text-right">
                                     <p class="mb-4 text-danger">140文字以内</p>
