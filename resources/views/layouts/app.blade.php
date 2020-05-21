@@ -36,11 +36,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end">
-                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#ホーム</h5><span class="sr-only">(current)</span></a>
-                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#積み上げレベル</h5></a><li>
-                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#積み上げツイート</h5></a></li>
-                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#継続日数</h5></a></li>
-                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#最近の積み上げ</h5></a></li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h4>#ホーム</h4><span class="sr-only">(current)</span></a>
+                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/tweets') }}"><h4>#積み上げツイート</h4></a></li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h4>#積み上げレベル</h4></a><li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h4>#継続日数</h4></a></li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/yourstack')}}"><h4>#最近の積み上げ</h4></a></li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('#')}}"><h4>#このサイトについて</h4></a></li>
                     <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
@@ -52,7 +53,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="https://twitter.com" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                             <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>

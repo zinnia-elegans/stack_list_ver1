@@ -15,25 +15,4 @@ a {
 	padding:0 
 }
 
-.top_message {
-    margin: 0 auto;
-    width: 50%;
-}
 
-.top_message button {
-    margin: 0 auto;
-    font-size: 2.0rem;
-    background-color: #555555;
-    color: #ffffff;
-}
-
-.container {
-    width: 50%;
-    margin: 0 auto;
-    color:#333333 ;
-}
-
-.content_login {
-    padding: 1rem 0;
-    background-color: #ffffff;
-}
