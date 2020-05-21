@@ -36,7 +36,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end">
-                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h4>#ホーム</h4><span class="sr-only">(current)</span></a>
+                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/')}}"><h4>#ホーム</h4><span class="sr-only">(current)</span></a>
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/tweets') }}"><h4>#積み上げツイート</h4></a></li>
                         <li class="nav-item mr-3"><a class="nav-link" href="#"><h4>#積み上げレベル</h4></a><li>
                         <li class="nav-item mr-3"><a class="nav-link" href="#"><h4>#継続日数</h4></a></li>
