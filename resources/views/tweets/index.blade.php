@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fulid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header p-3 w-100 d-flex">ツイート投稿</div>
                     <div class="card-body"> 
-                        <form method="post" action="">                         
+                        <form method="post" action=" route{{ "login" }}">                         
                             @csrf
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 p-3 w-100 d-flex">
@@ -33,7 +33,7 @@
                             </div>
                         </form>
                         <div class="mt-5">
-                        <h5 class="mt-7 text-center"><strong>#今日の積み上げ</strong></h5>
+                        <h5 class="mt-7 text-center"><strong>#最近のあなたの積み上げ</strong></h5>
                             @foreach ($statuses as $tweet)
                             @if(preg_match("/今日の積み上げ/",$tweet->text)==1)
                                 <div class="card mb-2">
