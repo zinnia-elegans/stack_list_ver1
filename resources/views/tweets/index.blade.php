@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header p-3 w-100 d-flex">ツイート投稿</div>
                     <div class="card-body"> 
-                        <form method="post" action=" route{{ "login" }}">                         
+                        <form method="post" action={{ route("login") }}>                         
                             @csrf
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 p-3 w-100 d-flex">

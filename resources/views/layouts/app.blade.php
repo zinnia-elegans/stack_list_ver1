@@ -31,17 +31,17 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav w-100 nav-justified mr-auto">
-                        <li class="nav-item active"><a class="nav-link" href="#"><h5>#ホーム</h5><span class="sr-only">(current)</span></a>
-                        <li class="nav-item"><a class="nav-link" href="#"><h5>#積み上げレベル</h5></a><li>
-                        <li class="nav-item"><a class="nav-link" href="#"><h5>#積み上げツイート</h5></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><h5>#継続日数</h5></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><h5>#最近の積み上げ</h5></a></li>
+                    <ul class="navbar-nav mr-auto">
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                          <!-- Authentication Links -->
+                    <ul class="navbar-nav justify-content-end">
+                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#ホーム</h5><span class="sr-only">(current)</span></a>
+                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#積み上げレベル</h5></a><li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#積み上げツイート</h5></a></li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#継続日数</h5></a></li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#最近の積み上げ</h5></a></li>
+                    <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
