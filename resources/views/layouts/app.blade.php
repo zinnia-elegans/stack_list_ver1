@@ -11,12 +11,16 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -43,12 +47,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end">
-                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/admin')}}"><h4>#ホーム</h4><span class="sr-only">(current)</span></a>
-                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/tweets') }}"><h4>#積み上げツイート</h4></a></li>
-                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h4>#積み上げレベル</h4></a><li>
-                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h4>#継続日数</h4></a></li>
-                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/yourstack')}}"><h4>#最近の積み上げ</h4></a></li>
-                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('#')}}"><h4>#このサイトについて</h4></a></li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/admin')}}"><h5>#ユーザー画面</h5><span class="sr-only">(current)</span></a>
+                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#積み上げレベル</h5></a><li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#継続日数</h5></a></li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/yourstack')}}"><h5>#最近の積み上げ</h5></a></li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('#')}}"><h5>#このサイトについて</h5></a></li>
                     <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">

@@ -12,8 +12,6 @@ class TweetsController extends Controller
     //  検索ツイート取得
      public function tweet(){
         $tweets = \Twitter::get('search/tweets', array("q" => "#今日の積み上げ","count" => 10, "result_type" => "mixed"));
-
-        dd($tweets);
         
         return view('index',[
             'statuses' => $tweets,
@@ -39,13 +37,21 @@ class TweetsController extends Controller
             ]);
     }
 
-    public function admin() {
+    public function admin(Request $request) {
         $userdata = \Twitter::get('account/verify_credentials');
         $userInfo = get_object_vars($userdata);
 
+        $tweet = $request->tweet;
+        $text = \Twitter::post('statuses/update', array("status" => $tweet));
+
         return view('admin', [
-            'userInfo' => $userInfo
+            'userInfo' => $userInfo,
+            'text' => $text
         ]);
+    }
+
+    public function continue () {
+        return view('continue');
     }
 
 

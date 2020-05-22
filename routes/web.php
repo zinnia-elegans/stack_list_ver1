@@ -16,4 +16,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('tweets', 'TweetsController@index');
     Route::get('yourstack', 'TweetsController@stack');
     Route::get('admin', 'TweetsController@admin');
+    Route::post('admin', 'TweetsController@admin');
+    Route::get('continue', 'TweetsController@continue');
 });
