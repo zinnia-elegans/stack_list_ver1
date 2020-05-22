@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class TweetsController extends Controller
 {
@@ -11,6 +12,8 @@ class TweetsController extends Controller
     //  検索ツイート取得
      public function tweet(){
         $tweets = \Twitter::get('search/tweets', array("q" => "#今日の積み上げ","count" => 10, "result_type" => "mixed"));
+
+        dd($tweets);
         
         return view('index',[
             'statuses' => $tweets,
@@ -37,7 +40,12 @@ class TweetsController extends Controller
     }
 
     public function admin() {
-        return view('admin');
+        $userdata = \Twitter::get('account/verify_credentials');
+        $userInfo = get_object_vars($userdata);
+
+        return view('admin', [
+            'userInfo' => $userInfo
+        ]);
     }
 
 

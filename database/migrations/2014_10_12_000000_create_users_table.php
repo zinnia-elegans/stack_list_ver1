@@ -20,9 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable()->comment('ログインパスワード');
             $table->string('text')->nullable()->comment('ツイート内容');
 
-            $table->string('avatar')->nullable()->comment('twitteruアイコンのURL');
+            $table->string('avatar')->nullable()->comment('twitterアイコンのURL');
             $table->string('twitter_id')->unique()->nullable()->comment('twitterのID');
             $table->string('twitter_name')->nullable()->comment('twitter＠名前、変更できない方');
+
 
             $table->string('provider')->nullble();
             $table->string('provider_id')->nullable();
