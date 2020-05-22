@@ -16,9 +16,16 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="css/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/css/style.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -36,7 +43,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end">
-                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/')}}"><h4>#ホーム</h4><span class="sr-only">(current)</span></a>
+                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/tweets')}}"><h4>#ホーム</h4><span class="sr-only">(current)</span></a>
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/tweets') }}"><h4>#積み上げツイート</h4></a></li>
                         <li class="nav-item mr-3"><a class="nav-link" href="#"><h4>#積み上げレベル</h4></a><li>
                         <li class="nav-item mr-3"><a class="nav-link" href="#"><h4>#継続日数</h4></a></li>

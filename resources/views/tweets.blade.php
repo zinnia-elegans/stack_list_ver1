@@ -10,7 +10,7 @@
                         <form method="post" action={{ route("login") }}>                         
                             @csrf
                             <div class="form-group row mb-0">
-                                <div class="col-md-12 p-3 w-100 d-flex">
+                                <div class="col-md-12 p-3 w-80 d-flex">
                                     <img src="{{ Auth::user()->avatar }}" class="rounded-circle" width="60" height="60">
                                     <div class="mt-3 ml-3 d-flex flex-column">
                                         <a href="https://twitter.com"><h5 class="text-secondary"><strong>{{ Auth::user()->name }}</strong></h5></a>

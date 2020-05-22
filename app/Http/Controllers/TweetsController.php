@@ -11,13 +11,9 @@ class TweetsController extends Controller
     //  検索ツイート取得
      public function tweet(){
         $tweets = \Twitter::get('search/tweets', array("q" => "#今日の積み上げ","count" => 10, "result_type" => "mixed"));
-        // $secondtweets = \Twitter::get('search/tweets', array("q" => "#今日の積み上げ","count" => 5, "result_type" => "recent"));
-        // $thirdtweets = \Twitter::get('search/tweets', array("q" => "#今日の積み上げ","count" => 5, "result_type" => "mixed"));
         
         return view('index',[
             'statuses' => $tweets,
-            // 'secondtweets' => $secondtweets,
-            // 'thirdtweets' => $thirdtweets
             ]);
     }
     
@@ -38,6 +34,10 @@ class TweetsController extends Controller
         return view('yourstack', [
             'statuses' => $statuses,
             ]);
+    }
+
+    public function admin() {
+        return view('admin');
     }
 
 

@@ -7,6 +7,8 @@
 require('./bootstrap');
 require('./jquery-3.5.1.min.js');
 require('./tweet.js');
+require('./popper.min.js');
+require('./bootstrap.min.js');
 
 
 window.Vue = require('vue');
