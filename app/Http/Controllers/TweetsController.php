@@ -38,15 +38,20 @@ class TweetsController extends Controller
     }
 
     public function admin(Request $request) {
+        // ユーザー情報を取得
         $userdata = \Twitter::get('account/verify_credentials');
         $userInfo = get_object_vars($userdata);
 
+        // ツイートする
         $tweet = $request->tweet;
         $text = \Twitter::post('statuses/update', array("status" => $tweet));
 
+        $userTweet = \Twitter::get('statuses/user_timeline',["count" => 30]);
+
         return view('admin', [
             'userInfo' => $userInfo,
-            'text' => $text
+            'text' => $text,
+            'userTweet' => $userTweet
         ]);
     }
 
