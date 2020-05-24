@@ -8,9 +8,14 @@ use Auth;
 
 class TweetsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     //  検索ツイート取得
-     public function tweet(){
+     public function tweet()
+     {
         $tweets = \Twitter::get('search/tweets', array("q" => "#今日の積み上げ","count" => 10, "result_type" => "mixed"));
         
         return view('index',[
@@ -19,7 +24,8 @@ class TweetsController extends Controller
     }
     
     // ツイート投稿
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $tweet = $request->tweet;
         $text = \Twitter::post('statuses/update', array("status" => $tweet));
     
@@ -29,7 +35,8 @@ class TweetsController extends Controller
     }
 
     // ユーザーのタイムラインを取得
-    public function stack() {
+    public function stack() 
+    {
         $statuses = \Twitter::get('statuses/user_timeline',["count" => 30]);
         
         return view('yourstack', [
@@ -37,7 +44,8 @@ class TweetsController extends Controller
             ]);
     }
 
-    public function admin(Request $request) {
+    public function admin(Request $request)
+    {
         // ユーザー情報を取得
         $userdata = \Twitter::get('account/verify_credentials');
         $userInfo = get_object_vars($userdata);
@@ -55,7 +63,8 @@ class TweetsController extends Controller
         ]);
     }
 
-    public function continue () {
+    public function continue ()
+    {
         return view('continue');
     }
 

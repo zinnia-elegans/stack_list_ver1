@@ -15,7 +15,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
 
-    protected $redirectTo = '/tweets';
+    protected $redirectTo = '/admin';
 
     public function __construct()
     {
@@ -34,6 +34,7 @@ class LoginController extends Controller
         $user = Socialite::driver($provider)->user();
         $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
+
         return redirect($this->redirectTo);
     }
 
