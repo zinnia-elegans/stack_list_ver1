@@ -14,7 +14,8 @@
             </div>
             <div class="card-body" style="">
               <img src="{{ Auth::user()->avatar }}" class="rounded-circle d-inline" width="60" height="60">
-              <h4 class="card-title d-inline">{{ Auth::user()->name }}</h4>
+              <h4 class="card-title d-inline"><strong>{{ Auth::user()->name }}</strong></h4>
+              <a href="https://twitter.com/home" class="btn-social-icon-twitter ml-2"><span class="btn-social-icon-twitter__square"><i class="fa fa-twitter"></i></span></a>
               <p class="card-text">{{ $userInfo['description']}}</p>
             </div>
           </div>
@@ -45,7 +46,7 @@
             </div>
           </div>
           <div class="card mx-auto pt-3" style="width: 37.5rem">
-            <h5 class="text-center"><strong>#前回の積み上げ</strong></h5>
+            <h5 class="text-center pt-3"><strong>#前回の積み上げ</strong></h5>
               <div class="card-body">
                 @foreach ($userTweet as $tweet)
                   @if(preg_match("/今日の積み上げ/",$tweet->text)==1)
