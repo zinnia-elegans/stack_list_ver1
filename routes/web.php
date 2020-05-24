@@ -9,7 +9,8 @@ Auth::routes();
 Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 // トップページ
-Route::get('/', 'TweetsController@tweet');
+Route::get('/about', 'TweetsController@about');
+Route::get('/','TweetsController@index');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('tweets', 'TweetsController@index');

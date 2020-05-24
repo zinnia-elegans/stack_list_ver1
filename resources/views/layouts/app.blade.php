@@ -42,8 +42,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                    </ul>
+                    <ul class="navbar-nav mr-auto"></ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end">
@@ -53,32 +52,24 @@
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/yourstack')}}"><h5>#最近の積み上げ</h5></a></li>
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('#')}}"><h5>#このサイトについて</h5></a></li>
                     <!-- Authentication Links -->
-                @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('auth/twitter') }}">{{ __('Login') }}</a>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <img src="{{ Auth::user()->avatar }}" class="rounded-circle" width="50" height="50">
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="https://twitter.com" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                             <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
-       
+                    @guest
+                        <li class="nav-item"><a class="nav-link" href="{{ url('auth/twitter') }}">{{ __('Login') }}</a></li>
+                    @else
+                        <li class="nav-item"><img src="{{ Auth::user()->avatar }}" class="rounded-circle" width="50" height="50"></li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="https://twitter.com" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/auth/twitter/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+                            </div>
+                        </li>
+                    @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>

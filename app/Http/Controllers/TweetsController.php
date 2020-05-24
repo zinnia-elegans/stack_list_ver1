@@ -10,28 +10,18 @@ class TweetsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
-    //  検索ツイート取得
-     public function tweet()
-     {
-        $tweets = \Twitter::get('search/tweets', array("q" => "#今日の積み上げ","count" => 10, "result_type" => "mixed"));
-        
-        return view('index',[
-            'statuses' => $tweets,
-            ]);
+    public function about()
+    {
+        return view('about');
     }
     
-    // ツイート投稿
-    public function index(Request $request)
-    {
-        $tweet = $request->tweet;
-        $text = \Twitter::post('statuses/update', array("status" => $tweet));
-    
-        return view('tweets', [
-            'text' => $text,
-        ]);
+
+    public function index()
+    {    
+        return view('auth/login');
     }
 
     // ユーザーのタイムラインを取得
@@ -54,6 +44,7 @@ class TweetsController extends Controller
         $tweet = $request->tweet;
         $text = \Twitter::post('statuses/update', array("status" => $tweet));
 
+        // 前回の積み上げを取得
         $userTweet = \Twitter::get('statuses/user_timeline',["count" => 30]);
 
         return view('admin', [

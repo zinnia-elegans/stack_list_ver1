@@ -12,26 +12,14 @@
         <body>
             <div class="container">
                 <form method="POST" action="{{ route('login') }}">
-                    @csrf            
-                    <div class="card mb-2">
-                        <div class="thumbnail">
-                            <img src="/storage/twitter0.png" class="rounded-circle img-fluid mx-auto d-block m-5" width="60%" height="auto" alt="twitter" >
-                            <div class="card-body">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <div class="media m-3 d-block text-center">
-                                            <h2 class="media-heading"><strong>ログイン方法</strong></h2>
-                                            <h3 class="m-5"><strong>当サイトの登録には、OAuthという認証方法を利用しております。</strong></h3>
-                                            <h3 class="m-5">OAuth認証では、ユーザー情報にアクセスする情報を得るだけで、当サイトがサービスのアカウントからユーザー情報を得ることができます。</h3>
-                                            <a href="{{ url('auth/twitter') }}">
-                                                <button type="button" class="btn btn-primary"><i class="fab fa-twitter"></i> Twitterアカウントでログインする</button>
-                                            </a>   
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    @csrf     
+                    <img src="https://bahn-csgroup.com/wp-content/uploads/2017/06/tusmiageru.jpg" class="rounded-circle img-fluid mx-auto d-block m-5" width="60%"  alt="積木" >
+                    <div class="media m-3 d-block text-center">
+                        <h1 class="site-name"><strong>積み上げリスト</strong></h1>
+                        <p><a href="{{ url('auth/twitter') }}" class="btn btn-primary" role="button">ログイン</a></p>
+                        <p><a href="#" role="button">テストユーザー</a></p>
                     </div>
+                </form>
             </div>
         </body>
     </html>
