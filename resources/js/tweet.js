@@ -29,7 +29,7 @@ $(function() {
             if (isNaN(returnDate) || returnDate == 0) {        
                 var returnDate = 0;
             } else {
-                $('#returnDate').text(returnDate+"日経過");
+                $('#returnDate').text("あなたの継続日数は"+returnDate+"日です。");
             }
         } 
     });

@@ -14,10 +14,7 @@
                             <input id="resetButton" class="btn-primary" type="reset" name="reset" value="リセット" />
                         </div>
                     </form>
-                <p>あなたの継続日数は、<p id="returnDate"></p> です。</p>
-            </div>
-            <div class="card-body">
-                <p>過去の積み上げを確認する</p>
+                <p id="returnDate"></p>
             </div>
         </div>
     </body>
