@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('continue', 'ContinueController@continue');
 });
 
-// ルーティングにプレフィックス(user)を指定
+// ルーティングにプレフィックス(guest)を指定
 Route::group(['prefix' => 'guest'], function() {
  
     Route::get('/signup',[

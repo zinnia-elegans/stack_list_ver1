@@ -32,12 +32,12 @@ class GuestuserController extends Controller
         $user->save();
        
         // リダイレクト
-        return redirect()->route('admin');
+        return redirect()->route('guest.register');
       }
 
       public function getProfile()
       {
-        return view('guest/register');
+        return view('guest.register');
       }
 
 }
