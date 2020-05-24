@@ -14,11 +14,17 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf     
                     <img src="https://bahn-csgroup.com/wp-content/uploads/2017/06/tusmiageru.jpg" class="rounded-circle img-fluid mx-auto d-block m-5" width="60%"  alt="積木" >
-                    <div class="media m-3 d-block text-center">
-                        <h1 class="site-name"><strong>積み上げリスト</strong></h1>
-                        <p><a href="{{ url('auth/twitter') }}" class="btn btn-primary mt-3" role="button"><i class="fa fa-twitter pr-2"></i>Twitter認証でログイン</a></p>
-                        <button class="btn btn-primary">一般ユーザーでログイン</button>
-                        <p class="mt-4"><a href="#" role="button">テストユーザー</a></p>
+                    <div class="media m-3 text-center">
+                        <div class="media-body d-block">
+                            <h1 class="site-name"><strong>積み上げリスト</strong></h1>
+                            <a href="{{ url('auth/twitter') }}">
+                                <button type="button" class="btn btn-primary m-3 p-2"><i class="fab fa-twitter"></i> Twitterアカウントでログインする</button>
+                            </a> 
+                            <a href="{{ url('guest/signup') }}">
+                                <button class="btn btn-primary m-3 p-2">一般ユーザーでログイン</button>
+                            </a>
+                            <p class="m-3"><a href="#" role="button">テストユーザー</a></p>
+                        </div>
                     </div>
                 </form>
             </div>

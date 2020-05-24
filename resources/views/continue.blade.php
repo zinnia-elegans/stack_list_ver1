@@ -5,6 +5,7 @@
         <div class="card mx-auto" style="width: 37.5rem">
             <div class="card-body">
                 <h3>現在の継続日数を確認する</h3>
+                    <p>最後の積み上げを入力してください</p>
                     <form id="test1" action="{{ url('/continue') }} " method="post" name="from">
                         <div class="form-group">
                             <input id="year" type="text" name="y" size="6" maxlength="4" value="2020"/> 年 
@@ -15,6 +16,7 @@
                         </div>
                     </form>
                 <p id="returnDate"></p>
+                
             </div>
         </div>
     </body>

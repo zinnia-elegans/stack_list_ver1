@@ -21,3 +21,23 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('continue', 'ContinueController@continue');
     Route::post('continue', 'ContinueController@continue');
 });
+
+// ルーティングにプレフィックス(user)を指定
+Route::group(['prefix' => 'guest'], function() {
+ 
+    Route::get('/signup',[
+      'uses' => 'GuestuserController@getSignup',
+      'as' => 'guest.signup'
+    ]);
+
+    Route::post('/signup',[
+        'uses' => 'GuestuserController@postSignup',
+        'as' => 'guest.signup'
+    ]);
+       
+        Route::get('/register',[
+        'uses' => 'GuestuserController@getProfile',
+        'as' => 'guest.register'
+    ]);
+   
+  });
