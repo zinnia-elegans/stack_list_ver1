@@ -14,14 +14,13 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/guest/guestuser';
+    protected $redirectToTwitter = '/admin';
 
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
-
 
 
     public function redirectToProvider($provider)
@@ -37,7 +36,7 @@ class LoginController extends Controller
         
         Auth::login($authUser, true);
 
-        return redirect($this->redirectTo);
+        return redirect($this->redirectToTwitter);
     }
 
     public function findOrCreateUser($user, $provider)
