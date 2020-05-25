@@ -16,6 +16,9 @@ class TweetsController extends Controller
 
     public function home()
     {    
+        // $user = new Twitteruser;
+        // dd($user);
+
         return view('home');
     }
 
