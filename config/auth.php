@@ -68,8 +68,13 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Twitteruser::class,
             'model' => App\Models\User::class,
+
+        ],
+
+        'twitterusers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Twitteruser::class,
 
         ],
 

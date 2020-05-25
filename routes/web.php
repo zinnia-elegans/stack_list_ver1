@@ -13,13 +13,12 @@ Route::get('/','TweetsController@home')->name('home');
 Route::get('/about', 'TweetsController@about');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('guest/register', 'UserController@getProfile')->name('register');
     Route::get('admin', 'TweetsController@admin')->name('admin');
     Route::post('admin', 'TweetsController@admin');
     Route::get('continue', 'ContinueController@continue');
     Route::post('continue', 'ContinueController@continue');
 });
-
-Route::get('guest/register', 'UserController@getProfile')->name('register');
 
 
 Route::group(['prefix' => 'guest'], function() {
