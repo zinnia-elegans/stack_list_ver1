@@ -48,19 +48,16 @@
           <div class="card mx-auto pt-3" style="width: 37.5rem">
             <h5 class="text-center pt-3"><strong>#前回の積み上げ</strong></h5>
               <div class="card-body">
-                      <div class="card p-3">
-                        <div class="media">
-                          <img src="public/stack1.png" class="rounded-circle mr-4">
-                          <div class="media-body">
-                              <a href=""><h5 class="d-inline mr-3"><strong>ユーザー名</strong></h5></a>
-                              <h6 class="d-inline text-secondary">日付</h6>
-                              <p class="mt-3 mb-0">テキスト</p>
-                          </div>
-                        </div>
-                      </div>
-                  @endif
-                  @break
-                @endforeach
+                <div class="card p-3">
+                  <div class="media">
+                    <img src="public/stack1.png" class="rounded-circle mr-4">
+                    <div class="media-body">
+                        <a href=""><h5 class="d-inline mr-3"><strong>ユーザー名</strong></h5></a>
+                        <h6 class="d-inline text-secondary">日付</h6>
+                        <p class="mt-3 mb-0">テキスト</p>
+                    </div>
+                  </div>
+                </div>
               </div>
           </div>
         </div>

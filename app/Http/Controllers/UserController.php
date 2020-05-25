@@ -12,32 +12,14 @@ class UserController extends Controller
         return View('guest.signup');
     }
 
-    public function postSignup(Request $request)
+    public function admin()
     {
-        // バリデーション
-        $this->validate($request,[
-          'name' => 'required',
-          'email' => 'email|required|unique:users',
-          'password' => 'required|min:4',
-        ]);
-       
-        // DBインサート
-        $user = new User([
-          'name' => $request->input('name'),
-          'email' => $request->input('email'),
-          'password' => bcrypt($request->input('password')),
-        ]);
-       
-        // 保存
-        $user->save();
-       
-        // リダイレクト
-        return redirect()->route('guest.register');
-      }
+        return view('guest.guestuser');
+    }
 
-      public function getProfile()
-      {
+    public function getProfile()
+    {
         return view('guest.register');
-      }
+    }
 
 }
