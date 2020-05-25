@@ -16,10 +16,7 @@ class TweetsController extends Controller
 
     public function home()
     {    
-        // $user = new Twitteruser;
-        // dd($user);
-
-        return view('home');
+        return view('index');
     }
 
     // ユーザーのタイムラインを取得
@@ -44,9 +41,6 @@ class TweetsController extends Controller
 
         // 前回の積み上げを取得
         $userTweet = \Twitter::get('statuses/user_timeline',["count" => 30]);
-
-        $user = new Twitteruser;
-        dd($user);
 
         return view('admin', [
             'userInfo' => $userInfo,

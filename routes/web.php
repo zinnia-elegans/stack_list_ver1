@@ -9,7 +9,7 @@ Auth::routes();
 Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 // トップページ
-Route::get('/home','TweetsController@home')->name('home');
+Route::get('/','TweetsController@home')->name('home');
 Route::get('/about', 'TweetsController@about');
 
 Route::group(['middleware' => 'auth'], function () {
@@ -19,22 +19,29 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('continue', 'ContinueController@continue');
 });
 
+Route::get('guest/register', 'UserController@getProfile')->name('register');
+
 
 Route::group(['prefix' => 'guest'], function() {
  
     Route::get('/signup',[
-      'uses' => 'GuestuserController@getSignup',
+      'uses' => 'UserController@getSignup',
       'as' => 'guest.signup'
     ]);
 
     Route::post('/signup',[
-        'uses' => 'GuestuserController@postSignup',
+        'uses' => 'UserController@postSignup',
         'as' => 'guest.signup'
     ]);
        
     Route::get('/register',[
-        'uses' => 'GuestuserController@getProfile',
+        'uses' => 'UserController@getProfile',
         'as' => 'guest.register'
+    ]);
+
+    Route::post('/register',[
+        'uses' => 'UserController@getProfile',
+        'as' => 'guest.guestuser'
     ]);
    
   });

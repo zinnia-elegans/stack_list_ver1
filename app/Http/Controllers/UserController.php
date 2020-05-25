@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Guestuser;
+use App\Models\User;
 
-class GuestuserController extends Controller
+class UserController extends Controller
 {
     public function getSignup()
     {
@@ -22,7 +22,7 @@ class GuestuserController extends Controller
         ]);
        
         // DBインサート
-        $user = new Guestuser([
+        $user = new User([
           'name' => $request->input('name'),
           'email' => $request->input('email'),
           'password' => bcrypt($request->input('password')),
