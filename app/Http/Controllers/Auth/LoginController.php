@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Models\User;
+use App\Models\Twitteruser;
 use Auth;
 use Socialite;
 
@@ -26,6 +26,7 @@ class LoginController extends Controller
 
     public function redirectToProvider($provider)
     {
+        // twitter認証へリダイレクト
         return Socialite::driver($provider)->redirect();
     }
 
@@ -33,6 +34,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver($provider)->user();
         $authUser = $this->findOrCreateUser($user, $provider);
+        
         Auth::login($authUser, true);
 
         return redirect($this->redirectTo);
@@ -40,11 +42,11 @@ class LoginController extends Controller
 
     public function findOrCreateUser($user, $provider)
     {
-        $authUser = User::where('provider_id', $user->id)->first();
+        $authUser = Twitteruser::where('provider_id', $user->id)->first();
         if($authUser) {
             return $authUser;
         }
-        return user::create([
+        return Twitteruser::create([
             'name' => $user->name,
             'email' => $user->name,
             'twitter_id' => $user->id,

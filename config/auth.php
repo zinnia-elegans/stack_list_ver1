@@ -66,10 +66,15 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'twitterusers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Twitteruser::class,
         ],
+
+            'users' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\User::class,
+            ],
 
         // 'users' => [
         //     'driver' => 'database',

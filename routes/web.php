@@ -9,20 +9,17 @@ Auth::routes();
 Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 // トップページ
+Route::get('/home','TweetsController@home')->name('home');
 Route::get('/about', 'TweetsController@about');
-Route::get('/','TweetsController@index');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('tweets', 'TweetsController@index');
-    Route::post('tweets', 'TweetsController@index');
-    Route::get('yourstack', 'TweetsController@stack');
     Route::get('admin', 'TweetsController@admin');
     Route::post('admin', 'TweetsController@admin');
     Route::get('continue', 'ContinueController@continue');
     Route::post('continue', 'ContinueController@continue');
 });
 
-// ルーティングにプレフィックス(guest)を指定
+
 Route::group(['prefix' => 'guest'], function() {
  
     Route::get('/signup',[
@@ -35,7 +32,7 @@ Route::group(['prefix' => 'guest'], function() {
         'as' => 'guest.signup'
     ]);
        
-        Route::get('/register',[
+    Route::get('/register',[
         'uses' => 'GuestuserController@getProfile',
         'as' => 'guest.register'
     ]);

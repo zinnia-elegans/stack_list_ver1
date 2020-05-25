@@ -5,23 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use App\Models\Twitteruser;
 
 class TweetsController extends Controller
 {
-    public function __construct()
-    {
-        // $this->middleware('auth');
-    }
-
     public function about()
     {
         return view('about');
     }
-    
 
-    public function index()
+    public function home()
     {    
-        return view('auth/login');
+        return view('home');
     }
 
     // ユーザーのタイムラインを取得
@@ -46,6 +41,9 @@ class TweetsController extends Controller
 
         // 前回の積み上げを取得
         $userTweet = \Twitter::get('statuses/user_timeline',["count" => 30]);
+
+        $user = new Twitteruser;
+        dd($user);
 
         return view('admin', [
             'userInfo' => $userInfo,

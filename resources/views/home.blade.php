@@ -11,7 +11,7 @@
         </head>
         <body>
             <div class="container">
-                {{-- <form method="POST" action="{{ route('login') }}"> --}}
+                <form method="POST" action="{{ route('home') }}">
                     @csrf     
                     <img src="https://bahn-csgroup.com/wp-content/uploads/2017/06/tusmiageru.jpg" class="rounded-circle img-fluid mx-auto d-block m-5" width="60%"  alt="積木" >
                     <div class="media m-3 text-center">
@@ -26,7 +26,7 @@
                             <p class="m-3"><a href="#" role="button">テストユーザー</a></p>
                         </div>
                     </div>
-                {{-- </form> --}}
+                </form>
             </div>
         </body>
     </html>

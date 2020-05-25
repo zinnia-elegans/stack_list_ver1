@@ -13,8 +13,8 @@
               </a>
             </div>
             <div class="card-body" style="">
-              <img src="{{ Auth::user()->avatar }}" class="rounded-circle d-inline" width="60" height="60">
-              <h4 class="card-title d-inline"><strong>{{ Auth::user()->name }}</strong></h4>
+              <img src="{{ $userInfo['profile_image_url_https'] }}" class="rounded-circle d-inline" width="60" height="60">
+              <h4 class="card-title d-inline"><strong>{{ $userInfo['name'] }}</strong></h4>
               <a href="https://twitter.com/home" class="btn-social-icon-twitter ml-2"><span class="btn-social-icon-twitter__square"><i class="fa fa-twitter"></i></span></a>
               <p class="card-text">{{ $userInfo['description']}}</p>
             </div>
@@ -52,10 +52,10 @@
                   @if(preg_match("/今日の積み上げ/",$tweet->text)==1)
                       <div class="card p-3">
                         <div class="media">
-                          <img src="{{ Auth::user()->avatar }}" class="rounded-circle mr-4">
+                          <img src="{{ $userInfo['profile_image_url_https'] }}" class="rounded-circle mr-4">
                           <div class="media-body">
-                              <a href="https://twitter.com"><h5 class="d-inline mr-3"><strong>{{ Auth::user()->name }}</strong></h5></a>
-                              <h6 class="d-inline text-secondary">{{ date('Y/m/d', strtotime(Auth::user()->created_at)) }}</h6>
+                              <a href="https://twitter.com"><h5 class="d-inline mr-3"><strong>{{ $userInfo['name'] }}</strong></h5></a>
+                              <h6 class="d-inline text-secondary">{{ date('Y/m/d', strtotime($tweet->created_at)) }}</h6>
                               <p class="mt-3 mb-0">{{ $tweet->text }}</p>
                           </div>
                         </div>
