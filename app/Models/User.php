@@ -13,7 +13,7 @@ class User extends Authenticatable
     
     protected $fillable = [
         'name',  
-        'screen-name',
+        'screen_name',
         'email',
         'password',
         'avatar',
@@ -41,4 +41,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(self::class, 'followers', 'following_id', 'followed_id');
     }
+
+    public function getAllUsers(Int $user_id)
+    {
+        // 引数で受け取ったログインしているユーザーを５名取得
+        return $this->Where('id', '<>', $user_id)->paginate(5);
+    }
+
 }

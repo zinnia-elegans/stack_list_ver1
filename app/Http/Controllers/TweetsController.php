@@ -10,15 +10,14 @@ use App\Models\User;
 
 class TweetsController extends Controller
 {
+    public function home()
+    {    
+        return view('index');
+    }
+
     public function about()
     {
         return view('about');
-    }
-
-    public function home()
-    {    
-
-        return view('index');
     }
 
     // ユーザーのタイムラインを取得
@@ -45,7 +44,7 @@ class TweetsController extends Controller
         // 前回の積み上げを取得
         $userTweet = \Twitter::get('statuses/user_timeline',["count" => 30]);
 
-        return view('admin', [
+        return view('users.admin', [
             'userInfo' => $userInfo,
             'text' => $text,
             'userTweet' => $userTweet
@@ -58,4 +57,45 @@ class TweetsController extends Controller
     }
 
 
+    // 一覧表示
+    public function index()
+    {
+        //
+    }
+
+    // 新規ツイート入力画面
+    public function create()
+    {
+        //
+    }
+
+    // 新規ツイート投稿処理
+    public function store(Request $request)
+    {
+        //
+    }
+
+    // ツイート詳細画面
+    public function show($id)
+    {
+        //
+    }
+
+    // ツイート編集画面
+    public function edit($id)
+    {
+        //
+    }
+
+    // ツイート編集処理
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    // ツイート削除処理
+    public function destroy($id)
+    {
+        //
+    }
 }

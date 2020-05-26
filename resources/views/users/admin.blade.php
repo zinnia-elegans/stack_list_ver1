@@ -20,7 +20,7 @@
                 </div>
                 <p class="card-text d-block text-center m-4" id="returnDate">継続日数が入る</p>
                 <div class="card-body shadow">
-                  <form method="post" action={{ url('/admin') }}>                         
+                  <form method="post" action={{ url('/users/admin') }}>                         
                     @csrf
                     <div class="form-group">
                         <textarea class="form-control" name="tweet" required autocomplete="text">#今日の積み上げ</textarea>   
@@ -62,7 +62,7 @@
           <div class="card">
             <div class="card-body">
               <h4 class="text-center m-3">タイムライン </h4>
-              <form method="post" action={{ url('/admin') }}>                         
+              <form method="post" action={{ url('/users/admin') }}>                         
                   @csrf
                   <div class="form-group">
                       <textarea class="form-control" name="tweet" required autocomplete="text"></textarea>   

@@ -15,7 +15,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     protected $redirectTo = '/guest/guestuser';
-    protected $redirectToTwitter = '/admin';
+    protected $redirectToTwitter = '/users/admin';
 
     public function __construct()
     {
@@ -47,6 +47,7 @@ class LoginController extends Controller
         }
         return User::create([
             'name' => $user->name,
+            'screen_name' => $user->name,
             'email' => $user->name,
             'twitter_id' => $user->id,
             'twitter_name' => $user->nickname,

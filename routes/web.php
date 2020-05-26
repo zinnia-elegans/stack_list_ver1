@@ -16,13 +16,13 @@ Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCall
 // 認証後
 Route::group(['middleware' => 'auth'], function () {
     // ツイッターユーザー用
-    Route::get('admin', 'TweetsController@admin');
-    Route::post('admin', 'TweetsController@admin');
+    Route::get('users/admin', 'TweetsController@admin');
+    Route::post('users/admin', 'TweetsController@admin');
     // ゲストユーザー用
     Route::get('guest/register', 'UserController@getProfile');
     Route::get('guest/guestuser', 'UserController@admin');
-   
-
+    //SNSツール機能    
+    Route::resource('users/allusers', 'UserController', ['only' => ['index', 'show', 'edit', 'update']]);
     // 継続日数
     Route::get('continue', 'ContinueController@continue');
     Route::post('continue', 'ContinueController@continue');

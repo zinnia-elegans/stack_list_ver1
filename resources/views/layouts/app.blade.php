@@ -48,7 +48,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end">
-                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/admin')}}"><h5>#ユーザー画面</h5><span class="sr-only">(current)</span></a>
+                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/users/admin')}}"><h5>#ユーザー画面</h5><span class="sr-only">(current)</span></a>
                         <li class="nav-item mr-3"><a class="nav-link" href="#"><h5>#積み上げレベル</h5></a><li>
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/continue') }}"><h5>#継続日数</h5></a></li>
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('#')}}"><h5>#このサイトについて</h5></a></li>
