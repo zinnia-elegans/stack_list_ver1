@@ -21,8 +21,9 @@ Route::group(['middleware' => 'auth'], function () {
     // ゲストユーザー用
     Route::get('guest/register', 'UserController@getProfile');
     Route::get('guest/guestuser', 'UserController@admin');
+   
 
-
+    // 継続日数
     Route::get('continue', 'ContinueController@continue');
     Route::post('continue', 'ContinueController@continue');
 });
