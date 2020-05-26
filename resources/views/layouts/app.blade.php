@@ -36,7 +36,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}"><h3>{{ config('app.name', '#積み上げリスト') }}</h3></a>
+                <img src="https://peoples-free.com/material/009-attitude/m-pose-032.png" class="rounded-circle shadow-lg border-light d-block mx-auto m-3"  width="60" height="60">
+                <a class="navbar-brand ml-3" href="{{ url('/') }}"><h3>{{ config('app.name', '#積み上げリスト') }}</h3></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

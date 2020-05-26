@@ -33,7 +33,6 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('twitter')->user();
         $authUser = $this->findOrCreateUser($user);
-        
         Auth::login($authUser, true);
 
         return redirect($this->redirectToTwitter);
