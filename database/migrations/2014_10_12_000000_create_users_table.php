@@ -15,10 +15,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id('id');
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('name')->comment('表示名');
+            $table->string('email')->nullable('email');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable()->comment('ログインパスワード');
+            $table->string('description')->nullable()->comment('自己紹介');
+            $table->string('avatar')->nullable()->comment('twitterアイコン');
+            $table->string('twitter_id')->unique()->nullable()->comment('twitterのID');
+            $table->string('twitter_name')->nullable()->comment('twitter＠名前、変更できない方');
             $table->rememberToken();
             $table->timestamps();
         });

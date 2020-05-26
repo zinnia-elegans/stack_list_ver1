@@ -12,39 +12,22 @@
               <div class="mask rgba-white-slight"></div>
               </a>
             </div>
-            <div class="card-body" style="">
-              <img src="public/stack1.png" class="rounded-circle d-inline" width="60" height="60">
-              <h4 class="card-title d-inline"><strong>ゲストユーザー名</strong></h4>
-              <a href="" class="btn-social-icon-twitter ml-2"><span class="btn-social-icon-twitter__square"></span></a>
-              <p class="card-text">自己紹介文</p>
-            </div>
+            <form action="" method="post">
+              <div class="card-body" style="">
+                <img src="public/stack1.png" class="rounded-circle d-inline" width="60" height="60">
+                <h4 class="card-title d-inline"><strong>{{ Auth::user()->name }}</strong></h4>
+                <a href="" class="btn-social-icon-twitter ml-2"><span class="btn-social-icon-twitter__square"></span></a>
+                <p class="card-text">自己紹介文</p>
+                <button class="btn btn-primary">プロフィール編集</button>
+              </div>
+              <div class="card mx-auto" style="width: 37.5rem">
+                <div class="card-body">
+                  <p class="card-text" id="returnDate"></p>
+                  <button class="btn btn-primary">継続日数を追加</button>
+                </div>
+            </form>
           </div>
-          <div class="card mx-auto" style="width: 37.5rem">
-            <div class="card-body">
-              <p class="card-text" id="returnDate"></p>
-              <button class="btn btn-primary">継続日数を追加</button>
-            </div>
-          </div>
-          <div class="card mx-auto" style="width: 37.5rem;">
-            <div class="card-body">
-              <form method="post" action={{ url('/admin') }}>                         
-                  @csrf
-                  <div class="form-group">
-                      <textarea class="form-control" name="tweet" required autocomplete="text">#今日の積み上げ</textarea>   
-                        @error('text')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                      </div>
-                      <div class="text-right">
-                        <p class="mb-4 text-danger">140文字以内</p>
-                        <button class="btn btn-primary">ツイートする</button>
-                      </div>
-                  </div>
-              </form>
-            </div>
-          </div>
+          
           <div class="card mx-auto pt-3" style="width: 37.5rem">
             <h5 class="text-center pt-3"><strong>#前回の積み上げ</strong></h5>
               <div class="card-body">
@@ -60,6 +43,7 @@
                 </div>
               </div>
           </div>
+
         </div>
       </div>
     </div>

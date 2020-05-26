@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Models\Twitteruser;
+use App\Models\User;
 use Auth;
 use Socialite;
 
@@ -23,36 +23,41 @@ class LoginController extends Controller
     }
 
 
-    public function redirectToProvider($provider)
+    public function redirectToProvider()
     {
         // twitter認証へリダイレクト
-        return Socialite::driver($provider)->redirect();
+        return Socialite::driver('twitter')->redirect();
     }
 
-    public function handleProviderCallback($provider)
+    public function handleProviderCallback()
     {
-        $user = Socialite::driver($provider)->user();
-        $authUser = $this->findOrCreateUser($user, $provider);
+        $user = Socialite::driver('twitter')->user();
+        $authUser = $this->findOrCreateUser($user);
         
         Auth::login($authUser, true);
 
         return redirect($this->redirectToTwitter);
     }
 
-    public function findOrCreateUser($user, $provider)
+    public function findOrCreateUser($user)
     {
-        $authUser = Twitteruser::where('provider_id', $user->id)->first();
+        // レコードでマッチしたデータを抽出
+        $authUser = User::where('twitter_id',$user->id)->first();
         if($authUser) {
             return $authUser;
         }
-        return Twitteruser::create([
+        return User::create([
             'name' => $user->name,
             'email' => $user->name,
             'twitter_id' => $user->id,
             'twitter_name' => $user->nickname,
             'avatar' => $user->avatar,
-            'provider' => strtoupper($provider),
-            'provider_id' => $user->id
         ]);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('home');
     }
 }

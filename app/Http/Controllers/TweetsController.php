@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use App\Models\Twitteruser;
+use App\Models\User;
 
 class TweetsController extends Controller
 {
@@ -16,6 +17,7 @@ class TweetsController extends Controller
 
     public function home()
     {    
+
         return view('index');
     }
 
@@ -31,6 +33,7 @@ class TweetsController extends Controller
 
     public function admin(Request $request)
     {
+
         // ユーザー情報を取得
         $userdata = \Twitter::get('account/verify_credentials');
         $userInfo = get_object_vars($userdata);

@@ -5,18 +5,18 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-// トップページ
+// ユーザー認証不要
 Route::get('/','TweetsController@home')->name('home');
 Route::get('/about', 'TweetsController@about');
 
-// 認証ページ
+// Twitter認証
 Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
-// 認証後ページ
+// 認証後
 Route::group(['middleware' => 'auth'], function () {
     // ツイッターユーザー用
-    Route::get('admin', 'TweetsController@admin')->name('admin');
+    Route::get('admin', 'TweetsController@admin');
     Route::post('admin', 'TweetsController@admin');
     // ゲストユーザー用
     Route::get('guest/register', 'UserController@getProfile');

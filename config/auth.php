@@ -71,11 +71,6 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'twitterusers' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Twitteruser::class,
-        ],
-
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
