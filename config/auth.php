@@ -69,13 +69,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
-
         ],
 
         'twitterusers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Twitteruser::class,
-
         ],
 
         // 'users' => [

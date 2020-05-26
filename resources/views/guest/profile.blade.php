@@ -7,16 +7,16 @@
         <div class="col">
           <div class="card mt-1 mx-auto" style="width: 37.5rem;">
             <div class="view overlay">
-              <img class="card-img-top" src="{{ $userInfo['profile_banner_url'] }}" alt="Card image cap">
+              <img class="card-img-top" src="public/dog.jpg" alt="Card image cap">
               <a href="#">
               <div class="mask rgba-white-slight"></div>
               </a>
             </div>
             <div class="card-body" style="">
-              <img src="{{ Auth::user()->avatar }}" class="rounded-circle d-inline" width="60" height="60">
-              <h4 class="card-title d-inline"><strong>{{ $userInfo['name'] }}</strong></h4>
-              <a href="https://twitter.com/home" class="btn-social-icon-twitter ml-2"><span class="btn-social-icon-twitter__square"><i class="fa fa-twitter"></i></span></a>
-              <p class="card-text">{{ $userInfo['description']}}</p>
+              <img src="public/stack1.png" class="rounded-circle d-inline" width="60" height="60">
+              <h4 class="card-title d-inline"><strong>ゲストユーザー名</strong></h4>
+              <a href="" class="btn-social-icon-twitter ml-2"><span class="btn-social-icon-twitter__square"></span></a>
+              <p class="card-text">自己紹介文</p>
             </div>
           </div>
           <div class="card mx-auto" style="width: 37.5rem">
@@ -48,21 +48,16 @@
           <div class="card mx-auto pt-3" style="width: 37.5rem">
             <h5 class="text-center pt-3"><strong>#前回の積み上げ</strong></h5>
               <div class="card-body">
-                @foreach ($userTweet as $tweet)
-                  @if(preg_match("/今日の積み上げ/",$tweet->text)==1)
-                      <div class="card p-3">
-                        <div class="media">
-                          <img src="{{ $userInfo['profile_image_url_https'] }}" class="rounded-circle mr-4">
-                          <div class="media-body">
-                              <a href="https://twitter.com"><h5 class="d-inline mr-3"><strong>{{ $userInfo['name'] }}</strong></h5></a>
-                              <h6 class="d-inline text-secondary">{{ date('Y/m/d', strtotime($tweet->created_at)) }}</h6>
-                              <p class="mt-3 mb-0">{{ $tweet->text }}</p>
-                          </div>
-                        </div>
-                      </div>
-                  @endif
-                  @break
-                @endforeach
+                <div class="card p-3">
+                  <div class="media">
+                    <img src="public/stack1.png" class="rounded-circle mr-4">
+                    <div class="media-body">
+                        <a href=""><h5 class="d-inline mr-3"><strong>ユーザー名</strong></h5></a>
+                        <h6 class="d-inline text-secondary">日付</h6>
+                        <p class="mt-3 mb-0">テキスト</p>
+                    </div>
+                  </div>
+                </div>
               </div>
           </div>
         </div>
