@@ -49,7 +49,7 @@ class LoginController extends Controller
             'name' => $user->name,
             'screen_name' => $user->name,
             'email' => $user->name,
-            'twitter_id' => $user->id,
+            'twitter_id' => $user->twitter_id,
             'twitter_name' => $user->nickname,
             'avatar' => $user->avatar,
         ]);

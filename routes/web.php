@@ -23,6 +23,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('guest/guestuser', 'UserController@admin');
     //SNSツール機能    
     Route::resource('users/allusers', 'UserController', ['only' => ['index', 'show', 'edit', 'update']]);
+    // フォロー/フォロー解除を追加
+    Route::post('users/alluser/follow', 'UserController@follow')->name('follow');
+    Route::delete('allusers/alluser/unfollow', 'UserController@unfollow')->name('unfollow');
     // 継続日数
     Route::get('continue', 'ContinueController@continue');
     Route::post('continue', 'ContinueController@continue');
