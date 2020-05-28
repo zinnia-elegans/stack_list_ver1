@@ -19,7 +19,7 @@
                   <button class="btn btn-primary mx-auto d-block">フォローしてみる</button>
                 </div>
                 <p class="card-text d-block text-center m-4" id="returnDate">継続日数が入る</p>
-                <div class="card-body shadow">
+                <div class="card-body">
                   <form method="post" action={{ url('/users/admin') }}>                         
                     @csrf
                     <div class="form-group">
@@ -32,7 +32,7 @@
                         </div>
                         <div class="text-right">
                           <p class="mb-4 text-danger">140文字以内</p>
-                          <button class="btn btn-primary">ツイートする</button>
+                          <button class="btn btn-primary">Twitterに投稿する</button>
                         </div>
                     </div>
                   </form>
@@ -41,7 +41,7 @@
                   <h5 class="text-center pt-3"><strong>#前回の積み上げ</strong></h5>
                   @foreach ($userTweet as $tweet)
                     @if(preg_match("/今日の積み上げ/",$tweet->text)==1)
-                        <div class="card p-3 shadow">
+                        <div class="card p-3">
                           <div class="media">
                             <img src="{{ Auth::user()->avatar }}" class="rounded-circle mr-4">
                             <div class="media-body">
