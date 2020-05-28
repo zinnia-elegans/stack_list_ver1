@@ -34,7 +34,6 @@ class UserController extends Controller
      // フォロー
      public function follow(Request $request)
      {
-
          $user = User::find($request->id);
          $follower = auth()->user();
          // フォローしているか
