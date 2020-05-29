@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Follower;
-use App\Models\Comment;
-use App\Models\Tweet;
-use App\Models\User;
 use Auth;
 
 class TweetsController extends Controller
@@ -38,7 +34,7 @@ class TweetsController extends Controller
     }
 
 
-    public function index(Request $request, Tweet $tweet,Follower $follower)
+    public function index(Request $request)
     {
 
         $userdata = \Twitter::get('account/verify_credentials');
