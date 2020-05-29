@@ -16,15 +16,8 @@ Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCall
 // 認証後
 Route::group(['middleware' => 'auth'], function () {
     // ゲストユーザー用
-    Route::get('guest/register', 'UserController@getProfile');
-    Route::get('guest/guestuser', 'UserController@admin');
-    //SNSツール機能    
-    Route::resource('users/allusers', 'UserController', ['only' => ['index', 'show', 'edit', 'update']]);
-    // フォロー/フォロー解除を追加
-    Route::post('users/alluser/follow', 'UserController@follow')->name('follow');
-    Route::delete('users/alluser/unfollow', 'UserController@unfollow')->name('unfollow');
-    // ツイート関連
-    Route::resource('users/admin', 'TweetsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+    Route::get('users/admin', 'TweetsControllerr@index');
+    Route::post('users/admin', 'TweetsControllerr@index');
     // 継続日数
     Route::get('continue', 'ContinueController@continue');
     Route::post('continue', 'ContinueController@continue');

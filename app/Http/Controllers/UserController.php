@@ -8,6 +8,7 @@ use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Tweet;
 use App\Models\Follower;
+use Auth;
 
 class UserController extends Controller
 {
