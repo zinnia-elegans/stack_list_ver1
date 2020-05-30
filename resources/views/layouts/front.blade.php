@@ -49,7 +49,7 @@
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('#')}}"><h5>#このサイトについて</h5></a></li>
                     <!-- Authentication Links -->
                     @guest
-                        <li class="nav-item"><a class="nav-link" href="{{ url('auth/twitter') }}"><h5>{{ __('Login') }}</h5></a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/oauth') }}"><h5>{{ __('Login') }}</h5></a></li>
                     @else
                         <li class="nav-item"><img src="{{ Auth::user()->avatar }}" class="rounded-circle" width="50" height="50"></li>
                         <li class="nav-item dropdown">

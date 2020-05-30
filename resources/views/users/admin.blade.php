@@ -8,8 +8,8 @@
       <img class="card-img-top" src="{{ $userInfo['profile_banner_url'] }}" alt="Card image cap">
       </div>
       <div class="card-body">
-        <div class="card-body d-block border shadow">
-          <img src="{{ $userInfo['profile_image_url'] }}" class="rounded-circle shadow-lg border-light d-block mx-auto m-3"  width="60" height="60">
+        <div class="card-body d-block border">
+          <img src="{{ $userInfo['profile_image_url'] }}" class="rounded-circle border-light d-block mx-auto m-3"  width="70" height="70">
           <p class="card-title text-center"><strong>{{ $userInfo['name'] }}</strong></p>
           <p class="card-text text-center m-5">{{ $userInfo['description'] }} </p>
         </div>
