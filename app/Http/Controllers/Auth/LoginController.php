@@ -30,9 +30,13 @@ class LoginController extends Controller
 
     public function handleProviderCallback()
     {
+        //twitterからの情報を取得
         $user = Socialite::driver('twitter')->user();
         $authUser = $this->findOrCreateUser($user);
+        // Laravel標準のAuthでログイン
         Auth::login($authUser, true);
+        // リクエストトークンの上書き
+        Auth::user()->update(['api_token' => str_random(60)]);
 
         return redirect($this->redirectToTwitter);
     }
@@ -45,6 +49,7 @@ class LoginController extends Controller
             return $authUser;
         }
         return User::create([
+            'token' => $user->token,
             'name' => $user->name,
             'screen_name' => $user->name,
             'email' => $user->name,
@@ -52,6 +57,11 @@ class LoginController extends Controller
             'twitter_name' => $user->nickname,
             'avatar' => $user->avatar,
         ]);
+    }
+
+    protected function authenticated(Request $request,$user) 
+    {
+        $user->update(['api_token' => str_random(60)]);
     }
 
     public function logout()

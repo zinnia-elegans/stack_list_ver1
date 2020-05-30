@@ -22,3 +22,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('continue', 'ContinueController@continue');
     Route::post('continue', 'ContinueController@continue');
 });
+
+Route::get('/oauth', 'TweetsController@login');
+//Callback用のルーティング
+Route::get('/callback', 'TweetsController@callBack');
+
+//indexのルーティング
+Route::get('users/admin', 'TweetsController@index');
+
+//logoutのルーティング
+Route::get('/logout', 'TweetsController@logout');

@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->nullable('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable()->comment('ログインパスワード');
-            $table->string('description')->nullable()->comment('自己紹介');
+            $table->string('description')->nullable();
+            $table->string('token')->nullable();
             $table->string('avatar')->nullable()->comment('twitterアイコン');
-            $table->string('profile_image')->nullable()->comment('プロフィール画像');
             $table->string('twitter_id')->unique()->nullable()->comment('twitterのID');
             $table->string('twitter_name')->nullable()->comment('twitter＠名前、変更できない方');
             $table->rememberToken();

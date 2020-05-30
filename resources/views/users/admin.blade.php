@@ -5,13 +5,13 @@
 <div class="container">
   <div class="card mt-1 w-50 mx-auto">
       <div class="view overlay">
-        <img class="card-img-top" src="{{ $userInfo['profile_banner_url'] }}" alt="Card image cap">
+      <img class="card-img-top" src="{{ $userInfo['profile_banner_url'] }}" alt="Card image cap">
       </div>
       <div class="card-body">
         <div class="card-body d-block border shadow">
           <img src="{{ Auth::user()->avatar }}" class="rounded-circle shadow-lg border-light d-block mx-auto m-3"  width="60" height="60">
           <p class="card-title text-center"><strong>{{ Auth::user()->name }}</strong></p>
-          <p class="card-text text-center m-5">{{ Auth::user()->description }}自己紹介文が入る</p>
+          <p class="card-text text-center m-5"></p>
         </div>
         <div class="card-body">
           <form method="post" action={{ url('/users/admin') }}>                         
