@@ -52,9 +52,9 @@
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('#')}}"><h5>#このサイトについて</h5></a></li>
                     <!-- Authentication Links -->
                     @guest
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">{{ __('Login') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/oauth') }}">{{ __('Login') }}</a></li>
                     @else
-                        <li class="nav-item"><img src="{{ Auth::user()->avatar }}" class="rounded-circle" width="50" height="50"></li>
+                        <li class="nav-item"><img src="" class="rounded-circle" width="50" height="50"></li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="https://twitter.com" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <span class="caret"></span>

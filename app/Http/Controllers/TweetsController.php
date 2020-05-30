@@ -48,11 +48,8 @@ class TweetsController extends Controller
 
         //インスタンス生成
         $twitter = new TwitterOAuth(
-        //API Key
         $this->consumerKey,
-        //API Secret
         $this->consumerSecret,
-        //アクセストークン
         $accessToken['oauth_token'],
         $accessToken['oauth_token_secret']
         );
@@ -85,18 +82,15 @@ class TweetsController extends Controller
 
 
     public function callBack(Request $request){
-        //GETパラメータから認証トークン取得
+        //G認証トークン取得
         $oauth_token = $request->input('oauth_token');
-        //GETパラメータから認証キー取得
+        //認証キー取得
         $oauth_verifier = $request->input('oauth_verifier');
     
-        //インスタンス生成
         $twitter = new TwitterOAuth(
             config('twitter.consumer_key'),
             config('twitter.consumer_secret'),
-            //認証トークン
             $oauth_token,
-            //認証キー
             $oauth_verifier
         );
     
@@ -107,7 +101,14 @@ class TweetsController extends Controller
         //セッションにアクセストークンを登録
         session()->put('accessToken', $accessToken);
     
-        //indexページにリダイレクト
-        return redirect('index');
+        return redirect('users/admin');
+    }
+
+    public function logout(){
+        //セッションクリア
+        session()->flush();
+    
+        //OAuthログイン画面にリダイレクト
+        return redirect('/');
     }
 }
