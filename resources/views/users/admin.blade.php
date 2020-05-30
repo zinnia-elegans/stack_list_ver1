@@ -9,8 +9,8 @@
       </div>
       <div class="card-body">
         <div class="card-body d-block border shadow">
-          <img src="{{ Auth::user()->avatar }}" class="rounded-circle shadow-lg border-light d-block mx-auto m-3"  width="60" height="60">
-          <p class="card-title text-center"><strong>{{ Auth::user()->name }}</strong></p>
+          <img src="{{ $userInfo['profile_image_url'] }}" class="rounded-circle shadow-lg border-light d-block mx-auto m-3"  width="60" height="60">
+          <p class="card-title text-center"><strong>{{ $userInfo['name'] }}</strong></p>
           <p class="card-text text-center m-5"></p>
         </div>
         <div class="card-body">
@@ -37,9 +37,9 @@
             @if(preg_match("/今日の積み上げ/",$tweet->text)==1)
                 <div class="card p-3">
                   <div class="media">
-                    <img src="{{ Auth::user()->avatar }}" class="rounded-circle mr-4">
+                    <img src="{{ $userInfo['profile_image_url'] }}" class="rounded-circle mr-4">
                     <div class="media-body">
-                        <a href="https://twitter.com"><h5 class="d-inline mr-3"><strong>{{ Auth::user()->name }}</strong></h5></a>
+                        <a href="https://twitter.com"><h5 class="d-inline mr-3"><strong>{{ $userInfo['name'] }}</strong></h5></a>
                         <h6 class="d-inline text-secondary">{{ date('Y/m/d', strtotime($tweet->created_at)) }}</h6>
                         <p class="mt-3 mb-0">{{ $tweet->text }}</p>
                     </div>

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Abraham\TwitterOAuth\TwitterOAuth;
+use Illuminate\Support\Facades\Input;
 use Auth;
 use Socialite;
 
 class TweetsController extends Controller
 {
-
+    private $consumerKey = 'd9ktYK8Pj12uAiBB6qX4wZGwD';
+    private $consumerSecret = 'X2j9gdo1TjtfQLN86c43zk1KJCwLsJOfSlCHHMwVBUJS47eMsh';
     private $callBackUrl = 'http://127.0.0.1:8000/users/admin/callback';
 
     public function home()
@@ -46,8 +48,10 @@ class TweetsController extends Controller
 
         //インスタンス生成
         $twitter = new TwitterOAuth(
-        config('twitter.consumer_key'),
-        config('twitter.consumer_secret'),
+        //API Key
+        $this->consumerKey,
+        //API Secret
+        $this->consumerSecret,
         //アクセストークン
         $accessToken['oauth_token'],
         $accessToken['oauth_token_secret']
@@ -55,10 +59,10 @@ class TweetsController extends Controller
 
         $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
 
-        $userTweet = \Twitter::get('statuses/user_timeline',["count" => 30]);
+        $userTweet = $twitter->get('statuses/user_timeline',["count" => 30]);
 
         $tweet = $request->tweet;
-        $text = \Twitter::post('statuses/update', array("status" => $tweet));
+        $text = $twitter->post('statuses/update', array("status" => $tweet));
 
         return view('users.admin', [
             'userInfo'  => $userInfo,
@@ -69,10 +73,7 @@ class TweetsController extends Controller
 
     public function login() {
 
-        $connection = new TwitterOAuth(
-            config('twitter.consumer_key'),
-            config('twitter.consumer_secret'),
-        );
+        $connection = new TwitterOAuth($this->consumerKey, $this->consumerSecret);
 
         // 認証URLを取得するためのリクエストトークンの生成
         $request_token = $connection->oauth('oauth/request_token', array('oauth_callback' => $this->callBackUrl));
@@ -83,11 +84,11 @@ class TweetsController extends Controller
     }
 
 
-    public function callBack(){
+    public function callBack(Request $request){
         //GETパラメータから認証トークン取得
-        $oauth_token = Input::get('oauth_token');
+        $oauth_token = $request->input('oauth_token');
         //GETパラメータから認証キー取得
-        $oauth_verifier = Input::get('oauth_verifier');
+        $oauth_verifier = $request->input('oauth_verifier');
     
         //インスタンス生成
         $twitter = new TwitterOAuth(
@@ -107,6 +108,6 @@ class TweetsController extends Controller
         session()->put('accessToken', $accessToken);
     
         //indexページにリダイレクト
-        return redirect('users.admin');
+        return redirect('index');
     }
 }

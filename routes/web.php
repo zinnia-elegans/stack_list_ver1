@@ -25,7 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/oauth', 'TweetsController@login');
 //Callback用のルーティング
-Route::get('/callback', 'TweetsController@callBack');
+Route::get('users/admin/callback', 'TweetsController@callBack');
 
 //indexのルーティング
 Route::get('users/admin', 'TweetsController@index');
