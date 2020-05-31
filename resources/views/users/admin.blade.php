@@ -30,7 +30,7 @@
         </div>
         </div>
         <div class="card-body">
-          <form method="post" action={{ url('/users/admin') }}>                         
+          <form method="post" action={{ route('login') }}>                         
             @csrf
             <div class="form-group">
                 <textarea class="form-control" name="tweet" required autocomplete="text">#今日の積み上げ</textarea>   

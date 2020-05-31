@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Abraham\TwitterOAuth\TwitterOAuth;
+use App\Models\User;
+use Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class TweetsController extends Controller
 {
@@ -22,39 +25,6 @@ class TweetsController extends Controller
         return view('about');
     }
 
-    public function continue ()
-    {
-        return view('continue');
-    }
-
-
-    public function index(Request $request)
-    {
-        //セッションからアクセストークン取得
-        $accessToken = session()->get('accessToken');
-
-        //インスタンス生成
-        $twitter = new TwitterOAuth(
-        $this->consumerKey,
-        $this->consumerSecret,
-        $accessToken['oauth_token'],
-        $accessToken['oauth_token_secret']
-        );
-
-        $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
-
-        $userTweet = $twitter->get('statuses/user_timeline',["count" => 30]);
-
-        $tweet = $request->tweet;
-        $text = $twitter->post('statuses/update', array("status" => $tweet));
-
-        return view('users.admin', [
-            'userInfo'  => $userInfo,
-            'userTweet' => $userTweet,
-            'text'      => $text
-        ]);
-    }
-
     public function login() {
 
         $connection = new TwitterOAuth($this->consumerKey, $this->consumerSecret);
@@ -64,7 +34,6 @@ class TweetsController extends Controller
         $url = $connection->url('oauth/authorize', array('oauth_token' => $request_token['oauth_token']));
 
         return redirect($url);
-
     }
 
 
@@ -84,29 +53,42 @@ class TweetsController extends Controller
         //アクセストークン取得
         //'oauth/access_token'はアクセストークンを取得するためのAPIのリソース
         $accessToken = $twitter->oauth('oauth/access_token', array('oauth_token' => $oauth_token, 'oauth_verifier' => $oauth_verifier));
-    
+        Auth::login($user, true);
         //セッションにアクセストークンを登録
-        $value = $request->session()->put('accessToken', $accessToken);
-        $authUser = $this->findOrCreateUser($value);
-        Auth::login($authUser, true);
+        session()->put('accessToken', $accessToken);
     
         return redirect('users/admin');
     }
 
-    public function findOrCreateUser($user)
+    public function index(Request $request)
     {
-        // レコードでマッチしたデータを抽出
-        $authUser = User::where('twitter_id',$user->id)->first();
-        if($authUser) {
-            return $authUser;
-        }
-        return User::create([
-            'name' => $user->name,
-            'screen_name' => $user->name,
-            'email' => $user->name,
-            'twitter_id' => $user->twitter_id,
+        //セッションからアクセストークン取得
+        $accessToken = session()->get('accessToken');
+
+        //インスタンス生成
+        $twitter = new TwitterOAuth(
+        $this->consumerKey,
+        $this->consumerSecret,
+        $accessToken['oauth_token'],
+        $accessToken['oauth_token_secret']
+        );
+
+        // ユーザー情報を取得
+        $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
+        // タイムライン取得
+        $userTweet = $twitter->get('statuses/user_timeline',["count" => 30]);
+        // ツイッターに投稿
+        $tweet = $request->tweet;
+        $text = $twitter->post('statuses/update', array("status" => $tweet));
+
+        return view('users.admin', [
+            'userInfo'  => $userInfo,
+            'userTweet' => $userTweet,
+            'text'      => $text
         ]);
     }
+
+
 
     public function logout(){
         //セッションクリア
