@@ -16,7 +16,6 @@
                         </div>
                     </form>
                 <p id="returnDate"></p>
-                
             </div>
         </div>
     </body>

@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Abraham\TwitterOAuth\TwitterOAuth;
-use Illuminate\Support\Facades\Input;
-use Auth;
-use Socialite;
 
 class TweetsController extends Controller
 {
@@ -23,16 +20,6 @@ class TweetsController extends Controller
     public function about()
     {
         return view('about');
-    }
-
-    // ユーザーのタイムラインを取得
-    public function stack() 
-    {
-        $statuses = \Twitter::get('statuses/user_timeline',["count" => 30]);
-        
-        return view('yourstack', [
-            'statuses' => $statuses,
-            ]);
     }
 
     public function continue ()
@@ -81,7 +68,7 @@ class TweetsController extends Controller
     }
 
 
-    public function callBack(Request $request){
+    public function callBack(Request $request, User $user){
         //G認証トークン取得
         $oauth_token = $request->input('oauth_token');
         //認証キー取得
@@ -99,9 +86,26 @@ class TweetsController extends Controller
         $accessToken = $twitter->oauth('oauth/access_token', array('oauth_token' => $oauth_token, 'oauth_verifier' => $oauth_verifier));
     
         //セッションにアクセストークンを登録
-        session()->put('accessToken', $accessToken);
+        $value = $request->session()->put('accessToken', $accessToken);
+        $authUser = $this->findOrCreateUser($value);
+        Auth::login($authUser, true);
     
         return redirect('users/admin');
+    }
+
+    public function findOrCreateUser($user)
+    {
+        // レコードでマッチしたデータを抽出
+        $authUser = User::where('twitter_id',$user->id)->first();
+        if($authUser) {
+            return $authUser;
+        }
+        return User::create([
+            'name' => $user->name,
+            'screen_name' => $user->name,
+            'email' => $user->name,
+            'twitter_id' => $user->twitter_id,
+        ]);
     }
 
     public function logout(){
