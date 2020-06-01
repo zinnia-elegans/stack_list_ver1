@@ -48,6 +48,13 @@ class TweetsController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $input = $request->all();
+
+        dd($input);
+    }
+
 
     public function home(Request $request)
     {    

@@ -57046,17 +57046,6 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 $(function () {
-  $('.more-btn').on('click', function () {
-    if ($(this).children().is('.open')) {
-      $(this).html('<p class="close">閉じる</p>').addClass('close-btn');
-      $(this).parent().removeClass('slide-up').addClass('slide-down');
-    } else {
-      $(this).html('<p class="open">もっと見る</p>').removeClass('close-btn');
-      $(this).parent().removeClass('slide-down').addClass('slide-up');
-    }
-  });
-});
-$(function () {
   $('#calcButton').click(function (e) {
     e.preventDefault();
     var today = new Date();
