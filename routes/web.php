@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TweetsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,9 +21,10 @@ Route::group(['middleware' => 'auth'], function () {
   //indexのルーティング
  Route::get('/users/admin', 'TweetsController@index');
  Route::post('/users/admin', 'TweetsController@index');
-    // 継続日数
-    Route::get('continue', 'ContinueController@continue');
-    Route::post('continue', 'ContinueController@continue');
+ Route::get('/users/index', 'TweetsController@index');
+  // 継続日数
+  Route::get('continue', 'ContinueController@continue');
+  Route::post('continue', 'ContinueController@continue');
 });
 
   //logoutのルーティング

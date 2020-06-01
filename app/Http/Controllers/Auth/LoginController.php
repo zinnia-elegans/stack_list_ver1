@@ -40,9 +40,8 @@ class LoginController extends Controller
     }
 
     public function callBack(Request $request, User $user){
-        //G認証トークン取得
+        //認証トークン取得
         $oauth_token = $request->input('oauth_token');
-        //認証キー取得
         $oauth_verifier = $request->input('oauth_verifier');
     
         $twitter = new TwitterOAuth(
@@ -52,7 +51,6 @@ class LoginController extends Controller
             $oauth_verifier
         );
     
-        //アクセストークン取得
         //'oauth/access_token'はアクセストークンを取得するためのAPIのリソース
         $accessToken = $twitter->oauth('oauth/access_token', array('oauth_token' => $oauth_token, 'oauth_verifier' => $oauth_verifier));
 
@@ -74,6 +72,7 @@ class LoginController extends Controller
     public function logout(){
         //セッションクリア
         session()->flush();
+        Auth::logout();
         //OAuthログイン画面にリダイレクト
         return redirect('/');
     }
