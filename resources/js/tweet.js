@@ -29,7 +29,8 @@ $(function() {
             if (isNaN(returnDate) || returnDate == 0) {        
                 var returnDate = 0;
             } else {
-                $('#returnDate').text("あなたの継続日数は"+returnDate+"日です。");
+                $('#returnDate').val("あなたの継続日数は"+returnDate+"日です。");
+                var str1 = $('#returnDate').val();
             }
         } 
     });

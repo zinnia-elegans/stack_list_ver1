@@ -57075,7 +57075,8 @@ $(function () {
       if (isNaN(returnDate) || returnDate == 0) {
         var returnDate = 0;
       } else {
-        $('#returnDate').text("あなたの継続日数は" + returnDate + "日です。");
+        $('#returnDate').val("あなたの継続日数は" + returnDate + "日です。");
+        var str1 = $('#returnDate').val();
       }
     }
   }); // リセット
@@ -57105,8 +57106,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/shimizushouhei/stack_list/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/shimizushouhei/stack_list/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/shimizushouhei/stack_list_ver1/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/shimizushouhei/stack_list_ver1/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

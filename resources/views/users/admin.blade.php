@@ -16,24 +16,23 @@
         <div class="card">
         <div class="card-body mt-3">
             <h3 class="text-center">現在の継続日数を確認する</h3>
-                <p class="text-center">最後の積み上げを入力してください</p>
-                <form id="test1" action="{{ url('/continue') }} " method="post" name="from">
-                    <div class="form-group text-center">
-                        <input id="year" type="text" name="y" size="6" maxlength="4" value="2020"/> 年 
-                        <input id="month" type="text" name="m" size="4" maxlength="2" placeholder="yy"/> 月 
-                        <input id="date" type="text" name="d" size="4" maxlength="2" placeholder="dd"/> 日
-                        <input id="calcButton" class="btn-primary" type="submit" name="regist" value="追加" />
-                        <input id="resetButton" class="btn-primary" type="reset" name="reset" value="リセット" />
-                    </div>
-                </form>
-            <p id="returnDate"></p>
+            <p class="text-center">最後の積み上げを入力してください</p>
+            <form id="test1" action="{{ url('/continue') }} " method="post" name="from">
+                <div class="form-group text-center">
+                    <input id="year" type="text" name="y" size="6" maxlength="4" value="2020"/> 年 
+                    <input id="month" type="text" name="m" size="4" maxlength="2" placeholder="yy"/> 月 
+                    <input id="date" type="text" name="d" size="4" maxlength="2" placeholder="dd"/> 日
+                    <input id="calcButton" class="btn-primary" type="button" name="regist" value="追加"/>
+                    <input id="resetButton" class="btn-primary" type="reset" name="reset" value="リセット" />
+                </div>
+            </form>
         </div>
         </div>
         <div class="card-body">
-          <form method="post" action={{ route('login') }}>                         
+          <form method="post" action={{ url('/users/admin') }}>                         
             @csrf
             <div class="form-group">
-                <textarea class="form-control" name="tweet" required autocomplete="text">#今日の積み上げ</textarea>   
+                <textarea class="form-control" name="tweet" required autocomplete="text" id="returnDate">#今日の積み上げ</textarea>   
                   @error('text')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>

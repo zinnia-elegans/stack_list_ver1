@@ -51,23 +51,7 @@ class TweetsController extends Controller
 
     public function home(Request $request)
     {    
-         //セッションからアクセストークン取得
-         $accessToken = session()->get('accessToken');
-
-         //インスタンス生成
-         $twitter = new TwitterOAuth(
-         $this->consumerKey,
-         $this->consumerSecret,
-        //  $accessToken['oauth_token'],
-        //  $accessToken['oauth_token_secret']
-         );
-
-        // ユーザー情報を取得
-        $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
-
-        return view('index',[
-            'userInfo' => $userInfo
-        ]);
+        return view('index');
     }
 
    
