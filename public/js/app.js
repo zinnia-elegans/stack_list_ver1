@@ -57075,7 +57075,7 @@ $(function () {
       if (isNaN(returnDate) || returnDate == 0) {
         var returnDate = 0;
       } else {
-        $('#returnDate').val("あなたの継続日数は" + returnDate + "日です。");
+        $('#returnDate').val("#今日の積み上げ 継続" + returnDate + "日");
         var str1 = $('#returnDate').val();
       }
     }
