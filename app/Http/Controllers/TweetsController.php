@@ -39,10 +39,7 @@ class TweetsController extends Controller
         // タイムライン取得
         $userTweet = $twitter->get('statuses/user_timeline',["count" => 30]);
 
-        $params = array(
-            'q'     => '#今日の積み上げ',
-            'count' =>  100,
-        );
+        $params = array('count' =>  100);
         // リクエスト回数
         $request_number = 10;
 
@@ -51,9 +48,14 @@ class TweetsController extends Controller
             $tweets_obj = $twitter->get('statuses/user_timeline', $params);
         
         // オブジェクトを配列に変換
-        $tweets_arr = json_decode(json_encode($tweets_obj), true);
+        $json = json_encode($tweets_obj);
+        $tweets_arr = json_decode($json, true);
+        $columns = array_column($tweets_arr, 'text');
 
-        // next_results が無ければ処理を終了
+        $tweetss = preg_match_all("/#今日の積み上げ /", $columns);
+        dd($tweetss);
+
+        // // next_results が無ければ処理を終了
         // if (!$next_results) {
         //     break;
         // }
@@ -61,15 +63,6 @@ class TweetsController extends Controller
         // // パラメータに変換
         // parse_str($next_results, $params);
     }
-        // array_filter($tweets_arr, (function($tweets_arr) {
-        //     return !preg_match_all('/#今日の積み上げ /', $tweets_arr, $next_results)==1;
-        // }));
-
-        preg_match_all('/#今日の積み上げ /', $tweets_arr, $next_results);
-
-    dd($next_results);
-
-
         return view('users.admin', [
             'userInfo'  => $userInfo,
             'userTweet' => $userTweet,
