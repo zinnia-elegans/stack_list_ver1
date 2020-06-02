@@ -30,13 +30,45 @@ class TweetsController extends Controller
         $accessToken['oauth_token_secret']
         );
 
+         // ツイッターに投稿
+         $tweet = $request->tweet;
+         $text = $twitter->post('statuses/update', array("status" => $tweet));
+
         // ユーザー情報を取得
         $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
         // タイムライン取得
         $userTweet = $twitter->get('statuses/user_timeline',["count" => 30]);
-        // ツイッターに投稿
-        $tweet = $request->tweet;
-        $text = $twitter->post('statuses/update', array("status" => $tweet));
+
+        $params = array(
+            'q'     => '#今日の積み上げ',
+            'count' =>  100,
+        );
+        // リクエスト回数
+        $request_number = 10;
+
+        for ($i = 0; $i <$request_number; $i++) { 
+            echo $params['count'] * $i + 1 . " - " . $params['count'] * ($i + 1) . " 件目取得中\n"; 
+            $tweets_obj = $twitter->get('statuses/user_timeline', $params);
+        
+        // オブジェクトを配列に変換
+        $tweets_arr = json_decode(json_encode($tweets_obj), true);
+
+        // next_results が無ければ処理を終了
+        // if (!$next_results) {
+        //     break;
+        // }
+
+        // // パラメータに変換
+        // parse_str($next_results, $params);
+    }
+        // array_filter($tweets_arr, (function($tweets_arr) {
+        //     return !preg_match_all('/#今日の積み上げ /', $tweets_arr, $next_results)==1;
+        // }));
+
+        preg_match_all('/#今日の積み上げ /', $tweets_arr, $next_results);
+
+    dd($next_results);
+
 
         return view('users.admin', [
             'userInfo'  => $userInfo,
