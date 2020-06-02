@@ -31,7 +31,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-2">
             <div class="container-fluid">
                 <img src="https://peoples-free.com/material/009-attitude/m-pose-032.png" class="rounded-circle border-light d-block mx-auto m-3"  width="60" height="60">
-                <a class="navbar-brand ml-3" href="{{ url('/users/index') }}"><h3>{{ config('app.name', '#積み上げリスト') }}</h3></a>
+                <a class="navbar-brand ml-3" href="{{ url('/') }}"><h3>{{ config('app.name', '#積み上げリスト') }}</h3></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -42,12 +42,13 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end">
-                        @auth
+                    @auth
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/users/admin')}}"><h5>#ユーザー画面</h5><span class="sr-only">(current)</span></a>
-                        @endauth
+                    @endauth
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('#')}}"><h5>#このサイトについて</h5></a></li>
                     <!-- Authentication Links -->
-                        {{-- <li class="nav-item"><img src="{{ $userInfo['profile_image_url'] }}" class="rounded-circle" width="50" height="50"></li> --}}
+                    @auth
+                        <li class="nav-item"><img src="{{ $userInfo['profile_image_url'] }}" class="rounded-circle" width="50" height="50"></li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="https://twitter.com" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <span class="caret"></span>
@@ -55,6 +56,9 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ url('/auth/twitter/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+                    @else
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/oauth') }}"><h5>{{ __('Login') }}</h5></a></li>
+                    @endauth
                             </div>
                         </li>
                     </ul>
