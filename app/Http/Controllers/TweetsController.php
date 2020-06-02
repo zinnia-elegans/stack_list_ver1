@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Abraham\TwitterOAuth\TwitterOAuth;
-use App\Models\User;
-use Auth;
-use Laravel\Socialite\Facades\Socialite;
 
 class TweetsController extends Controller
 {
@@ -50,9 +47,9 @@ class TweetsController extends Controller
 
     public function store(Request $request)
     {
-        $input = $request->all();
+        $returnDate = $request->returnDate;
 
-        dd($input);
+        dd($returnDate);
     }
 
 

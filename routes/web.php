@@ -20,8 +20,9 @@ Route::get('/users/admin/callback', 'Auth\LoginController@callBack');
 Route::group(['middleware' => 'auth'], function () {
   //indexのルーティング
  Route::get('/users/admin', 'TweetsController@index');
- Route::post('/users/admin', 'TweetsController@store');
+ Route::post('/users/admin', 'TweetsController@index');
  Route::get('/users/index', 'TweetsController@index');
+
   // 継続日数
   Route::get('continue', 'ContinueController@continue');
   Route::post('continue', 'ContinueController@continue');

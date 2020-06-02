@@ -15,14 +15,13 @@
         </div>
         <div class="card">
         <div class="card-body mt-3">
-            <p class="text-center">最後の積み上げからの継続日数を登録してください。</p>
-            <p class="text-center">次回以降は、自動入力されます。</p>
+            <p class="text-center">最後の積み上げからの継続日数を追加できます。</p>
             <form action="{{ url('/uers/admin') }} " method="post" name="from">
                 <div class="form-group text-center">
                     <input id="year" type="text" name="y" size="6" maxlength="4" value="2020"/> 年 
                     <input id="month" type="text" name="m" size="4" maxlength="2" placeholder="yy"/> 月 
                     <input id="date" type="text" name="d" size="4" maxlength="2" placeholder="dd"/> 日
-                    <button id="calcButton" class="btn btn-primary" type="button" name="regist">登録</button>
+                    <button id="calcButton" class="btn btn-primary" type="button" name="regist">追加</button>
                     <button id="resetButton" class="btn btn-primary" type="reset" name="reset">リセット</button>
                 </div>
             </form>

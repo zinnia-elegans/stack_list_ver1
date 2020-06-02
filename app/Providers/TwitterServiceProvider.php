@@ -21,7 +21,7 @@ class TwitterServiceProvider extends ServiceProvider
 
             return new TwitterOAuth(
                 $config['api_key'], 
-                $config['secret_key'], 
+                $config['secret_key'] 
             );
 
         });
