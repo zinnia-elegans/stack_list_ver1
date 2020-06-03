@@ -48,7 +48,7 @@
         <div class="card-body">
           <h5 class="text-center pt-3"><strong>#前回の積み上げ</strong></h5>
           @foreach ($userTweet as $tweet)
-            {{-- @if(preg_match("/今日の積み上げ/",$tweet->text)==1) --}}
+            @if(preg_match("/今日の積み上げ/",$tweet->text)==1)
                 <div class="card p-3">
                   <div class="media">
                     <img src="{{ $userInfo['profile_image_url'] }}" class="rounded-circle mr-4">
@@ -59,8 +59,8 @@
                     </div>
                   </div>
                 </div>
-              {{-- @break --}}
-            {{-- @endif --}}
+              @break
+            @endif
           @endforeach
         </div>
       </div>

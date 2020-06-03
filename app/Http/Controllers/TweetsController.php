@@ -39,40 +39,26 @@ class TweetsController extends Controller
         // タイムライン取得
         $userTweet = $twitter->get('statuses/user_timeline',["count" => 30]);
 
-        $params = array('count' =>  100);
+        $params = array('count' =>  200);
         // リクエスト回数
         $request_number = 10;
 
         for ($i = 0; $i <$request_number; $i++) { 
-            echo $params['count'] * $i + 1 . " - " . $params['count'] * ($i + 1) . " 件目取得中\n"; 
             $tweets_obj = $twitter->get('statuses/user_timeline', $params);
         
-        // オブジェクトを配列に変換
+        // jsonに変換
         $json = json_encode($tweets_obj);
+        // オブジェクトを配列に変換
         $tweets_arr = json_decode($json, true);
+        // textカラムを抽出
         $columns = array_column($tweets_arr, 'text');
-        $stack = "/#今日の積み上げ /";
 
-        for($i = 0; $i < count($columns); $i++) {
-            if(preg_match($stack, $columns[$i])) {
-                echo 'できてるよ！';
-            } else {
-                echo 'できてないよ！';
-            };
-        };
-
-        // // next_results が無ければ処理を終了
-        // if (!$next_results) {
-        //     break;
-        // }
-
-        // // パラメータに変換
-        // parse_str($next_results, $params);
     }
         return view('users.admin', [
             'userInfo'  => $userInfo,
             'userTweet' => $userTweet,
-            'text'      => $text
+            'text'      => $text,
+            'columns'   => $columns
         ]);
     }
 
