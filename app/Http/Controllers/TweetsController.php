@@ -51,9 +51,15 @@ class TweetsController extends Controller
         $json = json_encode($tweets_obj);
         $tweets_arr = json_decode($json, true);
         $columns = array_column($tweets_arr, 'text');
+        $stack = "/#今日の積み上げ /";
 
-        $tweetss = preg_match_all("/#今日の積み上げ /", $columns);
-        dd($tweetss);
+        for($i = 0; $i < count($columns); $i++) {
+            if(preg_match($stack, $columns[$i])) {
+                echo 'できてるよ！';
+            } else {
+                echo 'できてないよ！';
+            };
+        };
 
         // // next_results が無ければ処理を終了
         // if (!$next_results) {
