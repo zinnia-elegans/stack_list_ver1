@@ -3,6 +3,11 @@
 @section('content')
 
 <div class="container">
+  @foreach ($tweets_obj as $tweet)
+  @if(preg_match("/今日の積み上げ/",$tweet->text)==1)
+  <p>{{ $tweet->text }}</p>
+  @endif
+@endforeach
   <div class="card mt-1 w-50 mx-auto">
       <div class="view overlay">
       <img class="card-img-top" src="{{ $userInfo['profile_banner_url'] }}" alt="Card image cap">
@@ -47,7 +52,7 @@
         </div>
         <div class="card-body">
           <h5 class="text-center pt-3"><strong>#前回の積み上げ</strong></h5>
-          @foreach ($userTweet as $tweet)
+          @foreach ($tweets_obj as $tweet)
             @if(preg_match("/今日の積み上げ/",$tweet->text)==1)
                 <div class="card p-3">
                   <div class="media">
@@ -59,7 +64,7 @@
                     </div>
                   </div>
                 </div>
-              @break
+              {{-- @break --}}
             @endif
           @endforeach
         </div>

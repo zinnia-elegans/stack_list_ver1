@@ -43,18 +43,26 @@ class TweetsController extends Controller
         // リクエスト回数
         $request_number = 10;
 
-        for ($i = 0; $i <$request_number; $i++) { 
+        for ($i = 0; $i <$request_number; $i++) 
+        { 
             $tweets_obj = $twitter->get('statuses/user_timeline', $params);
-        
-        // jsonに変換
-        $json = json_encode($tweets_obj);
-        // オブジェクトを配列に変換
-        $tweets_arr = json_decode($json, true);
-        // textカラムを抽出
-        $columns = array_column($tweets_arr, 'text');
+            // jsonに変換
+            $json = json_encode($tweets_obj);
+            // オブジェクトを配列に変換
+            $tweets_arr = json_decode($json, true);
+            // textカラムを抽出
+            $columns = array_column($tweets_arr, 'text');
+            $stack = "/#今日の積み上げ /";
+            // 正規化表現
+            $result = preg_grep($stack, $columns);
+        }
+       
 
-    }
+        dd($result);
+
         return view('users.admin', [
+            'tweets_obj'=> $tweets_obj,
+            'tweets_arr' => $tweets_arr,
             'userInfo'  => $userInfo,
             'userTweet' => $userTweet,
             'text'      => $text,
