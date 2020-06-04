@@ -3,11 +3,6 @@
 @section('content')
 
 <div class="container">
-  @foreach ($tweets_obj as $tweet)
-  @if(preg_match("/今日の積み上げ/",$tweet->text)==1)
-  <p>{{ $tweet->text }}</p>
-  @endif
-@endforeach
   <div class="card mt-1 w-50 mx-auto">
       <div class="view overlay">
       <img class="card-img-top" src="{{ $userInfo['profile_banner_url'] }}" alt="Card image cap">
@@ -19,24 +14,17 @@
           <p class="card-text text-center m-3">{{ $userInfo['description'] }} </p>
         </div>
         <div class="card">
-        <div class="card-body mt-3">
-            <p class="text-center">最後の積み上げからの継続日数を追加できます。</p>
-            <form action="{{ url('/uers/admin') }} " method="post" name="from">
-                <div class="form-group text-center">
-                    <input id="year" type="text" name="y" size="6" maxlength="4" value="2020"/> 年 
-                    <input id="month" type="text" name="m" size="4" maxlength="2" placeholder="yy"/> 月 
-                    <input id="date" type="text" name="d" size="4" maxlength="2" placeholder="dd"/> 日
-                    <button id="calcButton" class="btn btn-primary" type="button" name="regist">追加</button>
-                    <button id="resetButton" class="btn btn-primary" type="reset" name="reset">リセット</button>
-                </div>
-            </form>
+        <div class="card-body mt-3 text-center">
+          <p class="d-inline">あなたの積み上げ総数：</p>
+          <h4 class="d-inline m-3" data-name="{{ $stackday }}" id="stackday">{{ $stackday }}</h4>
+          <input type="button" class="btn btn-primary d-inline" id="addstack" value="追加">
         </div>
         </div>
         <div class="card-body">
           <form method="post" action={{ url('/users/admin') }}>                         
             @csrf
             <div class="form-group">
-                <textarea class="form-control" name="tweet" required autocomplete="text" id="returnDate" rows="5">#今日の積み上げ 継続〇〇日</textarea>   
+                <textarea class="form-control" name="tweet" required autocomplete="text" id="stack" rows="5">#今日の積み上げ 継続〇〇日</textarea>   
                   @error('text')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -64,7 +52,7 @@
                     </div>
                   </div>
                 </div>
-              {{-- @break --}}
+              @break
             @endif
           @endforeach
         </div>

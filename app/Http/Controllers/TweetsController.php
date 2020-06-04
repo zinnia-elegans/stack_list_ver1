@@ -55,14 +55,12 @@ class TweetsController extends Controller
             $stack = "/#今日の積み上げ /";
             // 正規化表現
             $result = preg_grep($stack, $columns);
+            $stackday = count($result);
         }
-       
-
-        dd($result);
 
         return view('users.admin', [
-            'tweets_obj'=> $tweets_obj,
-            'tweets_arr' => $tweets_arr,
+            'stackday'   => $stackday,
+            'tweets_obj' => $tweets_obj,
             'userInfo'  => $userInfo,
             'userTweet' => $userTweet,
             'text'      => $text,
