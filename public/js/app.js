@@ -57047,8 +57047,8 @@ __webpack_require__.r(__webpack_exports__);
 
 $(function () {
   $('#addstack').click(function () {
-    var name = $('#stackday').data();
-    $('#stack').val("#今日の積み上げ 継続" + JSON.stringify(name) + "日");
+    var name = $('h4').attr('id');
+    $('#stack').val("#今日の積み上げ 継続" + name + "日");
     var str1 = $('#stack').val();
   });
 });
