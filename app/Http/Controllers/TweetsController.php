@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Abraham\TwitterOAuth\TwitterOAuth;
+use App\Models\User;
 
 class TweetsController extends Controller
 {
@@ -17,7 +18,7 @@ class TweetsController extends Controller
         return view('about');
     }
 
-    public function index(Request $request)
+    public function index(Request $request, User $user)
     {
         //セッションからアクセストークン取得
         $accessToken = session()->get('accessToken');
@@ -39,11 +40,30 @@ class TweetsController extends Controller
         // タイムライン取得
         $userTweet = $twitter->get('statuses/user_timeline',["count" => 30]);
 
-        $params = array('count' =>  200);
-        // リクエスト回数
-        $request_number = 10;
+        $params = array('count' => 200, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => 1);
+        $content = $twitter->get('statuses/user_timeline', array('count' => 200, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => false));
 
-        for ($i = 0; $i <$request_number; $i++) 
+        $x = 0;
+        while ($x < 15) {
+        $text = array();
+
+            foreach ($content as $tweet) {
+            $text[] = $tweet->id_str;
+            echo $tweet->text;
+     
+        }     
+
+        $last_tweet = end($text);
+
+        $content = $twitter->get('statuses/user_timeline', array('count' => 200, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => false, 'max_id' => $last_tweet));
+        foreach ($content as $tweet) {
+            echo $tweet->text;
+        }
+        $x++;
+    }
+
+
+        for ($i = 0; $i <10; $i++) 
         { 
             $tweets_obj = $twitter->get('statuses/user_timeline', $params);
             // jsonに変換
@@ -58,13 +78,13 @@ class TweetsController extends Controller
             $stackday = count($result);
         }
 
+
         return view('users.admin', [
             'stackday'   => $stackday,
-            'tweets_obj' => $tweets_obj,
             'userInfo'  => $userInfo,
             'userTweet' => $userTweet,
             'text'      => $text,
-            'columns'   => $columns
+            'tweets_obj' => $tweets_obj
         ]);
     }
 
