@@ -15,7 +15,7 @@
         </div>
         <div class="card">
         <div class="card-body mt-3 text-center">
-          <p class="d-inline">あなたの積み上げ総数：</p>
+          <p class="d-inline">あなたの積み上げレベル：</p>
           <h4 class="d-inline m-3" id="{{ $stackday }}">{{ $stackday }}</h4>
           <input type="button" class="btn btn-primary d-inline" id="addstack" value="追加">
         </div>

@@ -40,28 +40,7 @@ class TweetsController extends Controller
         // タイムライン取得
         $userTweet = $twitter->get('statuses/user_timeline',["count" => 30]);
 
-        $params = array('count' => 200, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => 1);
-        $content = $twitter->get('statuses/user_timeline', array('count' => 200, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => false));
-
-        $x = 0;
-        while ($x < 15) {
-        $text = array();
-
-            foreach ($content as $tweet) {
-            $text[] = $tweet->id_str;
-            echo $tweet->text;
-     
-        }     
-
-        $last_tweet = end($text);
-
-        $content = $twitter->get('statuses/user_timeline', array('count' => 200, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => false, 'max_id' => $last_tweet));
-        foreach ($content as $tweet) {
-            echo $tweet->text;
-        }
-        $x++;
-    }
-
+        $params = array('count' => 200, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => false);
 
         for ($i = 0; $i <10; $i++) 
         { 
@@ -77,8 +56,6 @@ class TweetsController extends Controller
             $result = preg_grep($stack, $columns);
             $stackday = count($result);
         }
-
-
         return view('users.admin', [
             'stackday'   => $stackday,
             'userInfo'  => $userInfo,
@@ -87,14 +64,6 @@ class TweetsController extends Controller
             'tweets_obj' => $tweets_obj
         ]);
     }
-
-    public function store(Request $request)
-    {
-        $returnDate = $request->returnDate;
-
-        dd($returnDate);
-    }
-
 
     public function home(Request $request)
     {    
