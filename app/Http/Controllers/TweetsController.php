@@ -31,9 +31,9 @@ class TweetsController extends Controller
         $accessToken['oauth_token_secret']
         );
 
-         // ツイッターに投稿
-         $tweet = $request->tweet;
-         $text = $twitter->post('statuses/update', array("status" => $tweet));
+        // ツイッターに投稿
+        $tweet = $request->tweet;
+        $text = $twitter->post('statuses/update', array("status" => $tweet));
 
         // ユーザー情報を取得
         $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
@@ -42,26 +42,24 @@ class TweetsController extends Controller
 
         $params = array('count' => 200, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => false);
 
-        for ($i = 0; $i <10; $i++) 
-        { 
-            $tweets_obj = $twitter->get('statuses/user_timeline', $params);
-            // jsonに変換
-            $json = json_encode($tweets_obj);
-            // オブジェクトを配列に変換
-            $tweets_arr = json_decode($json, true);
-            // textカラムを抽出
-            $columns = array_column($tweets_arr, 'text');
-            $stack = "/#今日の積み上げ /";
-            // 正規化表現
-            $result = preg_grep($stack, $columns);
-            $stackday = count($result);
-        }
+        $tweets_obj = $twitter->get('statuses/user_timeline', $params);
+        // jsonに変換
+        $json = json_encode($tweets_obj);
+        // オブジェクトを配列に変換
+        $tweets_arr = json_decode($json, true);
+        // textカラムを抽出
+        $columns = array_column($tweets_arr, 'text','created_at');
+        // 正規化表現
+        $result = preg_grep("/#今日の積み上げ /", $columns);
+        // 5件のみ取得
+        $stacklist = array_slice($result,0,5);
+
+        dd($stacklist);
         return view('users.admin', [
-            'stackday'   => $stackday,
             'userInfo'  => $userInfo,
             'userTweet' => $userTweet,
             'text'      => $text,
-            'tweets_obj' => $tweets_obj
+            'stacklist' => $stacklist
         ]);
     }
 
