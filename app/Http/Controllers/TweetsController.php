@@ -34,45 +34,35 @@ class TweetsController extends Controller
         // ツイッターに投稿
         $tweet = $request->tweet;
         $text = $twitter->post('statuses/update', array("status" => $tweet));
-
         // ユーザー情報を取得
         $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
-        // タイムライン取得
-        $userTweet = $twitter->get('statuses/user_timeline',["count" => 30]);
-
+        
         $params = array('count' => 200, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => false);
-
+        // ユーザーのタイムライン取得
         $tweets_obj = $twitter->get('statuses/user_timeline', $params);
         // jsonに変換
         $json = json_encode($tweets_obj);
         // オブジェクトを配列に変換
         $tweets_arr = json_decode($json, true);
 
-        $pattern = '/#今日の積み上げ /';
-        $number = '/[^0-9,０−９]+日/u';
-
+        $pattern = '/#今日の積み上げ+/';
         // textカラムを抽出
         $columns = array_column($tweets_arr, 'text','created_at');
-        // 正規化表現
+        // 配列からワードを抽出
         $result = preg_grep($pattern, $columns);
         // 5件のみ取得
         $stacklist = array_slice($result,0,5);
-
-
-
-    $n = preg_replace("/[^0-9,０−９]{1,3}??(?!=日)/u", "", $stacklist);
-    $h = preg_grep("/[0-9]日/", $stacklist);
-
-        dd($n);
-
-        
+        // 「日」が直後にある、1~3桁までの数字、以外のもの全てを""に置き換え
+        $stacklistdays = preg_replace("/([^0-9,０−９]{1,3}.??(?!=日))/u", "", $stacklist);
+        // 最初の配列の数字のみ取得
+        $stacklistday = array_slice($stacklistdays,0,1);       
 
         return view('users.admin', [
             'userInfo'  => $userInfo,
-            'userTweet' => $userTweet,
             'text'      => $text,
             'stacklist' => $stacklist,
-            'columns' => $columns
+            'columns' => $columns,
+            'stacklistday' => $stacklistday
         ]);
     }
 
