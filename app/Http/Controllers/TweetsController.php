@@ -49,13 +49,23 @@ class TweetsController extends Controller
         $tweets_arr = json_decode($json, true);
 
         $pattern = '/#今日の積み上げ /';
+        $number = '/[^0-9,０−９]+日/u';
 
         // textカラムを抽出
         $columns = array_column($tweets_arr, 'text','created_at');
         // 正規化表現
-        $result = preg_grep("/#今日の積み上げ /", $columns);
+        $result = preg_grep($pattern, $columns);
         // 5件のみ取得
         $stacklist = array_slice($result,0,5);
+
+
+
+    $n = preg_replace("/[^0-9,０−９]{1,3}??(?!=日)/u", "", $stacklist);
+    $h = preg_grep("/[0-9]日/", $stacklist);
+
+        dd($n);
+
+        
 
         return view('users.admin', [
             'userInfo'  => $userInfo,

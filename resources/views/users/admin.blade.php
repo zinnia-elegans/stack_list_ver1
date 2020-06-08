@@ -17,8 +17,9 @@
             </div>
           </form>
           <p>前回、投稿した日数</p>
+          <div class="p" name="returnDate">{{ old('returnDate') }}</div>
+
           <p>過去の積み上げ件数を自動で取得</p>
-          <p id="returnDate"></p>
         </div>
         <div class="m-3">
           <input id="calcButton" class="btn btn-primary" type="submit" name="regist" value="追加" />

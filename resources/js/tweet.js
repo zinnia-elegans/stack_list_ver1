@@ -28,6 +28,7 @@ $(function() {
                 var returnDate = 0;
             } else {
             $('#returnDate').text(returnDate);
+            $('.p').val(returnDate);
             }
         } 
     });
