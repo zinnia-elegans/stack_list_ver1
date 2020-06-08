@@ -47,6 +47,9 @@ class TweetsController extends Controller
         $json = json_encode($tweets_obj);
         // オブジェクトを配列に変換
         $tweets_arr = json_decode($json, true);
+
+        $pattern = '/#今日の積み上げ /';
+
         // textカラムを抽出
         $columns = array_column($tweets_arr, 'text','created_at');
         // 正規化表現
@@ -54,12 +57,12 @@ class TweetsController extends Controller
         // 5件のみ取得
         $stacklist = array_slice($result,0,5);
 
-        dd($stacklist);
         return view('users.admin', [
             'userInfo'  => $userInfo,
             'userTweet' => $userTweet,
             'text'      => $text,
-            'stacklist' => $stacklist
+            'stacklist' => $stacklist,
+            'columns' => $columns
         ]);
     }
 
