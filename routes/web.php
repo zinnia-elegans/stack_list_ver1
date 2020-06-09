@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
  Route::get('/users/admin', 'TweetsController@index');
  Route::post('/users/admin', 'TweetsController@index');
  Route::get('/users/continue', 'TweetsController@continue');
+ Route::post('/users/continue', 'TweetsController@continue');
 });
 
   //logoutのルーティング
