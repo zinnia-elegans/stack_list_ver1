@@ -18,6 +18,7 @@ class TweetsController extends Controller
         return view('about');
     }
 
+
     public function index(Request $request, User $user)
     {
         //セッションからアクセストークン取得
@@ -37,17 +38,13 @@ class TweetsController extends Controller
         // ユーザー情報を取得
         $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
         
-        $params = array('count' => 200, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => false);
+        $params = array('count' => 100, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => false);
         // ユーザーのタイムライン取得
         $tweets_obj = $twitter->get('statuses/user_timeline', $params);
-        // jsonに変換
-        $json = json_encode($tweets_obj);
-        // オブジェクトを配列に変換
-        $tweets_arr = json_decode($json, true);
 
         $pattern = '/#今日の積み上げ+/';
         // textカラムを抽出
-        $columns = array_column($tweets_arr, 'text','created_at');
+        $columns = array_column($tweets_obj, 'text');
         // 配列からワードを抽出
         $result = preg_grep($pattern, $columns);
         // 5件のみ取得
@@ -55,7 +52,7 @@ class TweetsController extends Controller
         // 「日」が直後にある、1~3桁までの数字、以外のもの全てを""に置き換え
         $stacklistdays = preg_replace("/([^0-9,０−９]{1,3}.??(?!=日))/u", "", $stacklist);
         // 最初の配列の数字のみ取得
-        $stacklistday = array_slice($stacklistdays,0,1);       
+        $stacklistday = array_slice($stacklistdays,0,1);     
 
         return view('users.admin', [
             'userInfo'  => $userInfo,
@@ -65,6 +62,8 @@ class TweetsController extends Controller
             'stacklistday' => $stacklistday
         ]);
     }
+
+
 
     public function home(Request $request)
     {    
@@ -79,13 +78,40 @@ class TweetsController extends Controller
          $accessToken['oauth_token_secret']
          );
  
-         // ユーザー情報を取得
-         $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
+        $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
 
-        return view('index',[
-            'userInfo' => $userInfo
-        ]);
+        return view('index',['userInfo' => $userInfo,]);
     }
 
+    
+
+    public function continue(Request $request, User $user)
+    {
+        $accessToken = session()->get('accessToken');
+
+        $twitter = new TwitterOAuth(
+        $this->consumerKey,
+        $this->consumerSecret,
+        $accessToken['oauth_token'],
+        $accessToken['oauth_token_secret']
+        );
+
+        $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
+        $params = array('count' => 100, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => false);
+        $tweets_obj = $twitter->get('statuses/user_timeline', $params);
+        $pattern = '/#今日の積み上げ+/';
+        $columns = array_column($tweets_obj, 'text');
+        $result = preg_grep($pattern, $columns);
+        $stacklist = array_slice($result,0,5);
+        $stacklistdays = preg_replace("/([^0-9,０−９]{1,3}.??(?!=日))/u", "", $stacklist);
+        $stacklistday = array_slice($stacklistdays,0,1);   
+        
+        return view('users.continue',[
+            'userInfo' => $userInfo,
+            'stacklistday' => $stacklistday
+        ]);
+    }
    
 }
+
+
