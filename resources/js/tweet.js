@@ -1,11 +1,9 @@
 $(function() {
-
     $('#addstack').click(function(){
         var name = $('h4').attr('id');
         $('#stack').val("#今日の積み上げ 継続"+name+"日");
         var str1 = $('#stack').val();
     });
-
 });
 
 $(function() {
@@ -37,4 +35,19 @@ $(function() {
     $('#resetButton').click(function(){
         $('#returnDate').text("");
     });
+});
+
+
+
+$(function(){
+    $('input[name=continue]').change(function(){
+        var text = $(this).val();
+        console.log(text);
+    });
+
+    $('button').click(function() {
+    var r = $('input[name=continue]').val();
+        console.log(r);
+    });
+
 });
