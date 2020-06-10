@@ -14,12 +14,6 @@ class TweetsController extends Controller
     private $consumerSecret = 'X2j9gdo1TjtfQLN86c43zk1KJCwLsJOfSlCHHMwVBUJS47eMsh';
     private $callBackUrl = 'http://127.0.0.1:8000/users/admin/callback';
 
-    public function about()
-    {
-        return view('about');
-    }
-
-
     public function index(Request $request, User $user)
     {
         //セッションからアクセストークン取得
@@ -131,6 +125,24 @@ class TweetsController extends Controller
             'stacklist' => $stacklist
         ]);
     }
+
+    public function about(Request $request)
+    {
+        $accessToken = session()->get('accessToken');
+
+        $twitter = new TwitterOAuth(
+        $this->consumerKey,
+        $this->consumerSecret,
+        $accessToken['oauth_token'],
+        $accessToken['oauth_token_secret']
+        );
+        $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
+
+        return view('about',[
+            'userInfo' => $userInfo,
+        ]);
+    }
+
    
 }
 

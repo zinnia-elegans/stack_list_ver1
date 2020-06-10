@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container-fluid">
   <div class="row">
     <div class="col">
@@ -33,7 +32,7 @@
         </div>
         <div class="card-body">
           <div class="card-body d-block border">
-            <img src="{{ $userInfo['profile_image_url'] }}" class="rounded-circle border-light d-block mx-auto m-3"  width="70" height="70">
+            <img src="{{ $userInfo['profile_image_url'] }}" class="rounded-circle d-block mx-auto m-3"  width="70" height="70">
             <p class="card-title text-center"><strong>{{ $userInfo['name'] }}</strong></p>
             <p class="card-text text-center m-3">{{ $userInfo['description'] }} </p>
           </div>
@@ -78,5 +77,4 @@
     </div>
   </div>
 </div>
-
 @endsection

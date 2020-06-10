@@ -1,37 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <!DOCTYPE html>
-    <html lang="ja">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="csrf-token" content="{{ csrf_token() }}">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>積み上げリスト</title>
-        </head>
-        <body>
             <div class="container">           
-                    <div class="card mb-2">
-                        <div class="thumbnail">
-                            <img src="/storage/twitter0.png" class="rounded-circle img-fluid mx-auto d-block m-5" width="60%" height="auto" alt="twitter" >
-                            <div class="card-body">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <div class="media m-3 d-block text-center">
-                                            <h2 class="media-heading"><strong>ログイン方法</strong></h2>
-                                            <h3 class="m-5"><strong>当サイトの登録には、OAuthという認証方法を利用しております。</strong></h3>
-                                            <h3 class="m-5">OAuth認証では、ユーザー情報にアクセスする情報を得るだけで、当サイトがサービスのアカウントからユーザー情報を得ることができます。</h3>
-                                            <a href="{{ url('auth/twitter') }}">
-                                                <button type="button" class="btn btn-primary"><i class="fab fa-twitter"></i> Twitterアカウントでログインする</button>
-                                            </a>   
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="card">
+                    <div class="card-body">
+                        <p>このサイトではツイッターに「＃今日の積み上げ」「積み上げ日数」をつぶやくことができます。</p>
+                        <p>ツイート投稿欄に予め「#今日の積み上げ」をセット。</p>
+                        <p>日数計算は「積み上げ日数ページ」で登録していただけると、その日からの日数が自動的に追加されます。</p>
+                        <p>また「＃今日の積み上げ」ツイートの中から、「〇〇日」の数字を自動取得し、表示しています。</p>
+                        <p>こちらも後ほど自動で追加することができます。</p>
                     </div>
+                </div>
             </div>
-        </body>
-    </html>
 
 @endsection

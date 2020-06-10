@@ -57081,6 +57081,16 @@ $(function () {
     $('#returnDate').text("");
   });
 });
+$(function () {
+  $('input[name=continue]').change(function () {
+    var text = $(this).val();
+    console.log(text);
+  });
+  $('button').click(function () {
+    var r = $('input[name=continue]').val();
+    console.log(r);
+  });
+});
 
 /***/ }),
 

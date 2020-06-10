@@ -28,9 +28,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-2">
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm p-2">
             <div class="container-fluid">
-                <img src="https://peoples-free.com/material/009-attitude/m-pose-032.png" class="rounded-circle border-light d-block mx-auto m-3"  width="60" height="60">
+                <img src="https://peoples-free.com/material/009-attitude/m-pose-032.png" class="rounded-circle  d-block mx-auto m-3"  width="60" height="60">
                 <a class="navbar-brand ml-3" href="{{ url('/') }}"><h3>{{ config('app.name', '#積み上げリスト') }}</h3></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -46,7 +46,7 @@
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/users/admin')}}"><h5>#ユーザー画面</h5><span class="sr-only"></span></a>
                         <li class="nav-item mr-3"><a class="nav-link" href="{{ url('/users/continue')}}"><h5>#積み上げ日数</h5><span class="sr-only"></span></a>
                     @endauth
-                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('#')}}"><h5>#このサイトについて</h5></a></li>
+                        <li class="nav-item mr-3"><a class="nav-link" href="{{ url('about')}}"><h5>#このサイトについて</h5></a></li>
                     <!-- Authentication Links -->
                     @auth
                         <li class="nav-item"><img src="{{ $userInfo['profile_image_url'] }}" class="rounded-circle" width="50" height="50"></li>
