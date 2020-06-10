@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use App\Models\User;
+use App\Models\Day;
 
 class TweetsController extends Controller
 {
@@ -56,14 +57,10 @@ class TweetsController extends Controller
 
         return view('users.admin', [
             'userInfo'  => $userInfo,
-            'text'      => $text,
             'stacklist' => $stacklist,
-            'columns' => $columns,
             'stacklistday' => $stacklistday
         ]);
     }
-
-
 
     public function home(Request $request)
     {    
@@ -85,7 +82,25 @@ class TweetsController extends Controller
 
     
 
-    public function continue(Request $request, User $user)
+    public function continue(Request $request)
+    {
+        $accessToken = session()->get('accessToken');
+
+        $twitter = new TwitterOAuth(
+        $this->consumerKey,
+        $this->consumerSecret,
+        $accessToken['oauth_token'],
+        $accessToken['oauth_token_secret']
+        );
+
+        $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
+
+        return view('users.continue',[
+            'userInfo' => $userInfo,
+        ]);
+    }
+
+    public function store(Request $request,User $user)
     {
         $accessToken = session()->get('accessToken');
 
@@ -104,11 +119,16 @@ class TweetsController extends Controller
         $result = preg_grep($pattern, $columns);
         $stacklist = array_slice($result,0,5);
         $stacklistdays = preg_replace("/([^0-9,０−９]{1,3}.??(?!=日))/u", "", $stacklist);
-        $stacklistday = array_slice($stacklistdays,0,1);   
-        
-        return view('users.continue',[
+        $stacklistday = array_slice($stacklistdays,0,1);     
+
+        $continue = new Day;
+        $continue->day = $request->continueDay;
+        $continue->update();
+
+        return view('users.admin',[
             'userInfo' => $userInfo,
-            'stacklistday' => $stacklistday
+            'stacklistday' => $stacklistday,
+            'stacklist' => $stacklist
         ]);
     }
    

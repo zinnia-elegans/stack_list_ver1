@@ -16,10 +16,10 @@ Route::get('/users/admin/callback', 'Auth\LoginController@callBack');
  
 // 認証後
 Route::group(['middleware' => 'auth'], function () {
- Route::get('/users/admin', 'TweetsController@index');
+ Route::get('/users/admin', 'TweetsController@index')->name('index');
  Route::post('/users/admin', 'TweetsController@index');
  Route::get('/users/continue', 'TweetsController@continue');
- Route::post('/users/continue', 'TweetsController@continue');
+ Route::post('/users/continue', 'TweetsController@store')->name('day');
 });
 
   //logoutのルーティング

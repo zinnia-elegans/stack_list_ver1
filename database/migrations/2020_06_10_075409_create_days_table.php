@@ -16,7 +16,7 @@ class CreateDaysTable extends Migration
         Schema::create('days', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable()->comment('表示名');
-            $table->string('day')->nullable()->comment('日数');
+            $table->text('day');
             $table->rememberToken();
             $table->timestamps();
         });
