@@ -43,16 +43,20 @@ class TweetsController extends Controller
         // 配列からワードを抽出
         $result = preg_grep($pattern, $columns);
         // 5件のみ取得
-        $stacklist = array_slice($result,0,4);
+        $stacklist = array_slice($result,0,5);
         // 「日」が直後にある、1~3桁までの数字、以外のもの全てを""に置き換え
         $stacklistdays = preg_replace("/([^0-9,０−９]{1,3}.??(?!=日))/u", "", $stacklist);
         // 最初の配列の数字のみ取得
-        $stacklistday = array_slice($stacklistdays,0,1);     
+        $stacklistday = array_slice($stacklistdays,0,1);    
+        
+        $day = Day::select('day')->get();
+
 
         return view('users.admin', [
             'userInfo'  => $userInfo,
             'stacklist' => $stacklist,
-            'stacklistday' => $stacklistday
+            'stacklistday' => $stacklistday,
+            'day' => $day
         ]);
     }
 
@@ -76,7 +80,7 @@ class TweetsController extends Controller
 
     
 
-    public function continue(Request $request)
+    public function continue (Request $request, User $user)
     {
         $accessToken = session()->get('accessToken');
 
@@ -111,7 +115,7 @@ class TweetsController extends Controller
         $pattern = '/#今日の積み上げ+/';
         $columns = array_column($tweets_obj, 'text');
         $result = preg_grep($pattern, $columns);
-        $stacklist = array_slice($result,0,4);
+        $stacklist = array_slice($result,0,5);
         $stacklistdays = preg_replace("/([^0-9,０−９]{1,3}.??(?!=日))/u", "", $stacklist);
         $stacklistday = array_slice($stacklistdays,0,1);     
 
@@ -119,10 +123,13 @@ class TweetsController extends Controller
         $continue->day = $request->continueDay;
         $continue->update();
 
+        $day = Day::select('day')->get();
+
         return view('users.admin',[
             'userInfo' => $userInfo,
             'stacklistday' => $stacklistday,
-            'stacklist' => $stacklist
+            'stacklist' => $stacklist,
+            'day' => $day
         ]);
     }
 

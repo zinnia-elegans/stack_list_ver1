@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <body>
         <div class="container w-25">
             <div class="card">
                 <h2 class="m-4 text-center">積み上げ日数</h2>
                     <form action="{{ route('day') }}" method="post">
                         <div class="card-body border m-3">
-                            <h6><input type="radio" class="m-3" name="continue" value="できてる">開始日から計算して継続日数を登録</h6>
+                            <h6><input type="radio" class="m-3" name="continue">開始日から計算して継続日数を登録</h6>
                                 <p>今日までの連続継続日数を登録してください。</p>
                                 @csrf
                                 <div class="form-group m-3 text-center">
@@ -17,8 +16,7 @@
                                 </div>
                         </div>
                         <div class="card-body border m-3">
-                            <h6><input type="radio" class="m-3">手動で積み上げ日数を登録<br></h6>
-                            <p>積み上げた日数を登録してください。</p>
+                            <h6><input type="radio" class="m-3">積み上げ日数を登録<br></h6>
                             <div class="text-center">
                                 <h4><input type="text" size="8" maxlength="3" class="m-3 text-center" name="continueDay">日</h4>
                                 <button type="submit">登録</button>
@@ -31,5 +29,4 @@
                     </form>
             </div>
         </div>
-    </body>
 @endsection

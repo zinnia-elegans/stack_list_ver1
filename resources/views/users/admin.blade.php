@@ -1,25 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col">
-      <div class="card mt-1 text-center">
-          <h2 class="m-4">積み上げ日数</h2>
-                @foreach($stacklistday as $beforeList)
-                <div class="card-body border m-3">
-                  <div class="m-3" name="continue">前回の積み上げ日数 + 1日<br></div>
-                  <h4><input class="m-3" id="addDays" type="text" size="4" value="{{ $beforeList + 1 }}">日</h4>
-                </div>
-                @endforeach
-              <div class="m-3 text-center">
-                <button class="btn btn-primary" id="addText">追加</button>
-                <button class="btn btn-primary" id="resetText">リセット</button>
-              </div>
-            </form>
-      </div>
-    </div>
-
     <div class="col">
       <div class="card">
         <div class="view overlay">
@@ -29,6 +12,19 @@
             <a href="https://twitter.com/home"><p class="card-title text-center"><strong>{{ $userInfo['name'] }}</strong></p></a>
             <p class="card-text text-center m-3">{{ $userInfo['description'] }} </p>
           </div>
+                  @foreach($stacklistday as $beforeList)
+                  <div class="card-body border m-3 text-center">
+                    <div class="m-3" name="continue">前回の積み上げ日数 + 1日<br>
+                      <h4><input class="m-3" id="addDays" type="text" size="4" value="{{ $beforeList + 1 }}">日</h4>
+                    </div>
+                    <div class="">
+                      <button class="btn btn-primary" id="addText">追加</button>
+                      <button class="btn btn-primary" id="resetText">リセット</button>
+                    </div>
+                  </div>
+                  @endforeach
+            
+              </form>
           <div class="card-body">
             <form method="post" action={{ url('/users/admin') }}>                         
                 @csrf
