@@ -1,12 +1,4 @@
 $(function() {
-    $('#addstack').click(function(){
-        var name = $('h4').attr('id');
-        $('#stack').val("#今日の積み上げ 継続"+name+"日");
-        var str1 = $('#stack').val();
-    });
-});
-
-$(function() {
     $('#calcButton').click(function(e) {
         e.preventDefault();        
 
@@ -40,14 +32,19 @@ $(function() {
 
 
 $(function(){
-    $('input[name=continue]').change(function(){
-        var text = $(this).val();
-        console.log(text);
+    var addInput = $('#addDays')
+    var addButton = $('#addText')
+    var resetButton = $('#resetText')
+    var addTextarea = $('#addTweet')
+
+    addButton.on('click', function(){
+        var addText = addInput.val()+'日'+'\n';
+        addTextarea.append(addText);
     });
 
-    $('button').click(function() {
-    var r = $('input[name=continue]').val();
-        console.log(r);
-    });
-
+    resetButton.on('click', function(){
+        var addBlank = '';
+        addTextarea.text(addBlank);
+        addTextarea.text('#今日の積み上げ ');
+    })
 });

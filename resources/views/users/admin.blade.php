@@ -6,16 +6,15 @@
     <div class="col">
       <div class="card mt-1 text-center">
           <h2 class="m-4">積み上げ日数</h2>
-            <form action="{{ url('/') }}" method="post">
                 @foreach($stacklistday as $beforeList)
                 <div class="card-body border m-3">
                   <div class="m-3" name="continue">前回の積み上げ日数 + 1日<br></div>
-                  <h4><input class="m-3" type="text" size="4" value="{{ $beforeList + 1 }}">日</h4>
+                  <h4><input class="m-3" id="addDays" type="text" size="4" value="{{ $beforeList + 1 }}">日</h4>
                 </div>
                 @endforeach
               <div class="m-3 text-center">
-                <button id="calcButton" class="btn btn-primary" type="submit" name="regist" >追加</button>
-                <input id="resetButton" class="btn btn-primary" type="reset" name="reset" value="リセット" />
+                <button class="btn btn-primary" id="addText">追加</button>
+                <button class="btn btn-primary" id="resetText">リセット</button>
               </div>
             </form>
       </div>
@@ -34,7 +33,7 @@
             <form method="post" action={{ url('/users/admin') }}>                         
                 @csrf
                   <div class="form-group">
-                      <textarea class="form-control" name="tweet" required autocomplete="text" id="returnDate" rows="5">#今日の積み上げ </textarea>
+                      <textarea class="form-control" name="tweet" required autocomplete="text" id="addTweet" rows="5">#今日の積み上げ </textarea>
                     @error('text')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
