@@ -4,36 +4,30 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <div class="card">
-        <h2 class="m-4">積み上げ日数</h2>
-          <form action="{{ url('/') }}" method="post">
-            <div class="card-body border m-3">
-              <input type="radio" class="m-3">登録した日数<br>
-              <input type="text" size="8" maxlength="2" class="m-3"> 日
-            </div>
-              @foreach($stacklistday as $beforeList)
-              <div class="card-body border m-3">
-                <input type="radio" class="m-3" name="continue" value="できてる？">前回、投稿した日数<br>
-                <h4><input class="m-3" type="text" size="4" value="{{ $beforeList }}">日</h4>
+      <div class="card mt-1 text-center">
+          <h2 class="m-4">積み上げ日数</h2>
+            <form action="{{ url('/') }}" method="post">
+                @foreach($stacklistday as $beforeList)
+                <div class="card-body border m-3">
+                  <div class="m-3" name="continue">前回の積み上げ日数 + 1日<br></div>
+                  <h4><input class="m-3" type="text" size="4" value="{{ $beforeList + 1 }}">日</h4>
+                </div>
+                @endforeach
+              <div class="m-3 text-center">
+                <button id="calcButton" class="btn btn-primary" type="submit" name="regist" >追加</button>
+                <input id="resetButton" class="btn btn-primary" type="reset" name="reset" value="リセット" />
               </div>
-              @endforeach
-            <div class="m-3 text-center">
-              <button id="calcButton" class="btn btn-primary" type="submit" name="regist" >追加</button>
-              <input id="resetButton" class="btn btn-primary" type="reset" name="reset" value="リセット" />
-            </div>
-          </form>
+            </form>
       </div>
     </div>
 
     <div class="col">
-      <div class="card mt-1">
+      <div class="card">
         <div class="view overlay">
           <img class="card-img-top" src="{{ $userInfo['profile_banner_url'] }}" alt="Card image cap">
         </div>
-        <div class="card-body">
           <div class="card-body d-block border">
-            <img src="{{ $userInfo['profile_image_url'] }}" class="rounded-circle d-block mx-auto m-3"  width="70" height="70">
-            <p class="card-title text-center"><strong>{{ $userInfo['name'] }}</strong></p>
+            <a href="https://twitter.com/home"><p class="card-title text-center"><strong>{{ $userInfo['name'] }}</strong></p></a>
             <p class="card-text text-center m-3">{{ $userInfo['description'] }} </p>
           </div>
           <div class="card-body">
@@ -53,9 +47,9 @@
                   </div>
             </form>
           </div>
-        </div>
       </div>
     </div>
+
     <div class="col">
       <div class="card">
         <div class="card-body">

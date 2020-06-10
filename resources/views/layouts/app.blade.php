@@ -27,7 +27,7 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="bg-white">
         <nav class="navbar navbar-expand-lg navbar-light shadow-sm p-2">
             <div class="container-fluid">
                 <img src="https://peoples-free.com/material/009-attitude/m-pose-032.png" class="rounded-circle  d-block mx-auto m-3"  width="60" height="60">
