@@ -14,7 +14,7 @@
           </div>
                   @foreach($stacklistday as $beforeList)
                   <div class="card-body border m-3 text-center">
-                    <div class="m-3" name="continue">前回の積み上げ日数 + 1日<br>
+                    <div class="m-3" name="continue">今日の積み上げ<br>
                       <h4><input class="m-3" id="addDays" type="text" size="4" value="{{ $beforeList + 1 }}">日</h4>
                     </div>
                     <div class="">

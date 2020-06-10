@@ -29,22 +29,34 @@ $(function() {
     });
 });
 
+$.fn.clickToggle = function (a, b) {
+  return this.each(function () {
+    var clicked = false;
+    $(this).on('click', function () {
+      clicked = !clicked;
+      if (clicked) {
+        return a.apply(this, arguments);
+      }
+      return b.apply(this, arguments);
+    });
+  });
+};
+
 
 
 $(function(){
-    var addInput = $('#addDays')
-    var addButton = $('#addText')
-    var resetButton = $('#resetText')
-    var addTextarea = $('#addTweet')
 
-    addButton.on('click', function(){
-        var addText = addInput.val()+'日'+'\n';
-        addTextarea.append(addText);
-    });
+    $('#addText').clickToggle(function() {
+        var addText = $('#addDays').val()+'日'+'\n';
+        $('#addTweet').text('#今日の積み上げ '+addText);
+    }, function() {
+        var addText = $('#addDays').val()+'日'+'\n';
+        $('#addTweet').text('#今日の積み上げ '+addText);
+    })
 
-    resetButton.on('click', function(){
-        var addBlank = '';
-        addTextarea.text(addBlank);
-        addTextarea.text('#今日の積み上げ ');
+    $('#resetText').on('click', function(){
+    var resetBlank = '';
+        $('#addTweet').text(resetBlank);
+        $('#addTweet').text('#今日の積み上げ ');
     })
 });
