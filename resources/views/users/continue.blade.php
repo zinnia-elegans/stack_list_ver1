@@ -3,11 +3,10 @@
 @section('content')
         <div class="container w-25">
             <div class="card">
-                <h2 class="m-4 text-center">積み上げ日数</h2>
+                <h2 class="m-4 text-center">積み上げ日数計算</h2>
                     <form action="{{ route('day') }}" method="post">
                         <div class="card-body border m-3">
-                            <h6><input type="radio" class="m-3" name="continue">開始日から計算して継続日数を登録</h6>
-                                <p>今日までの連続継続日数を登録してください。</p>
+                            <h6><input type="radio" class="m-3" name="continue">開始日から今日までの日数を登録</h6>
                                 @csrf
                                 <div class="form-group m-3 text-center">
                                     <input id="year" type="text" name="y" size="6" maxlength="4" value="2020"/> 年 

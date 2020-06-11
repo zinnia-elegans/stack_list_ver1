@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use App\Models\User;
 use App\Models\Day;
+use Storage;
 
 class TweetsController extends Controller
 {
@@ -51,12 +52,15 @@ class TweetsController extends Controller
         
         $day = Day::select('day')->get();
 
+        $imagePath = Storage::disk('s3')->url('s3://stacklist/1_Primary_logo_on_transparent_393x63.png');
+
 
         return view('users.admin', [
             'userInfo'  => $userInfo,
             'stacklist' => $stacklist,
             'stacklistday' => $stacklistday,
-            'day' => $day
+            'day' => $day,
+            'imagePath' => $imagePath
         ]);
     }
 
@@ -75,7 +79,9 @@ class TweetsController extends Controller
  
         $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
 
-        return view('index',['userInfo' => $userInfo,]);
+        return view('index',[
+            'userInfo' => $userInfo,
+            ]);
     }
 
     
@@ -92,9 +98,11 @@ class TweetsController extends Controller
         );
 
         $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
+        $imagePath = Storage::disk('s3')->url('s3://stacklist/1_Primary_logo_on_transparent_393x63.png');
 
         return view('users.continue',[
             'userInfo' => $userInfo,
+            'imagePath' => $imagePath
         ]);
     }
 
@@ -124,12 +132,14 @@ class TweetsController extends Controller
         $continue->update();
 
         $day = Day::select('day')->get();
+        $imagePath = Storage::disk('s3')->url('s3://stacklist/1_Primary_logo_on_transparent_393x63.png');
 
         return view('users.admin',[
             'userInfo' => $userInfo,
             'stacklistday' => $stacklistday,
             'stacklist' => $stacklist,
-            'day' => $day
+            'day' => $day,
+            'imagePath' => $imagePath
         ]);
     }
 
@@ -144,9 +154,11 @@ class TweetsController extends Controller
         $accessToken['oauth_token_secret']
         );
         $userInfo = get_object_vars($twitter->get('account/verify_credentials'));
+        $imagePath = Storage::disk('s3')->url('s3://stacklist/1_Primary_logo_on_transparent_393x63.png');
 
         return view('about',[
             'userInfo' => $userInfo,
+            'imagePath' => $imagePath
         ]);
     }
 
