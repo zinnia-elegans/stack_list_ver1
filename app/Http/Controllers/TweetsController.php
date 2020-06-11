@@ -48,7 +48,7 @@ class TweetsController extends Controller
         // 「日」が直後にある、1~3桁までの数字、以外のもの全てを""に置き換え
         $stacklistdays = preg_replace("/([^0-9,０−９]{1,3}.??(?!=日))/u", "", $stacklist);
         // 最初の配列の数字のみ取得
-        $stacklistday = array_slice($stacklistdays,0,1);    
+        $stacklistday = array_slice($stacklistdays,0,1);
         
         $day = Day::select('day')->get();
 

@@ -12,10 +12,10 @@
             <a href="https://twitter.com/home"><p class="card-title text-center"><strong>{{ $userInfo['name'] }}</strong></p></a>
             <p class="card-text text-center m-3">{{ $userInfo['description'] }} </p>
           </div>
-                  @foreach($stacklistday as $beforeList)
+                  @foreach((array)$stacklistday as $beforeList)
                   <div class="card-body border m-3 text-center">
                     <div class="m-3" name="continue">今日の積み上げ<br>
-                      <h4><input class="m-3" id="addDays" type="text" size="4" value="{{ $beforeList + 1 }}">日</h4>
+                      <h4><input class="m-3" id="addDays" type="text" size="4" value="{{ (int)$beforeList+1}}">日</h4>
                     </div>
                     <div class="">
                       <button class="btn btn-primary" id="addText">追加</button>

@@ -17,18 +17,19 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans+JP:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <link href="css/bootstrap-social.scss" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-white">
     <div id="app" class="bg-white">
         <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
             <div class="container-fluid">
@@ -57,7 +58,7 @@
                                 <a class="dropdown-item" href="{{ url('/auth/twitter/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                         @else
-                                <li class="nav-item"><a class="nav-link" href="{{ url('/oauth') }}"><h5>{{ __('Login') }}</h5></a></li>
+                                <li class="nav-item m-3 pt-2"><a class="nav-link" href="{{ url('/oauth') }}"><h5>{{ __('Login') }}</h5></a></li>
                         @endauth
                             </div>
                         </li>
@@ -65,7 +66,7 @@
                 </div>
             </div>
         </nav>
-        <main class="py-5">
+        <main class="my-auto">
             @yield('content')
         </main>
     </div>
