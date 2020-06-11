@@ -7,7 +7,8 @@
                     <div class="text-center pt-5">
                     @auth
                         <a href="{{ url('/users/admin') }}" type="button" class="btn btn-twitter btn-social-icon btn-primary p-2 d-block mx-auto my-4" style="width: 12rem">ユーザー画面へ</a>
-                        <a href="{{ url('/auth/twitter/logout') }}" class="d-block m-4">ログアウト</a>
+                        <a href="{{ url('/auth/twitter/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.Logout') }}</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                     @else
                         <a href="{{ url('/oauth') }}" type="button" class="btn btn-social-icon btn-twitter btn-primary p-2 d-block mx-auto" style="width:16rem;">Twitterアカウントでログインする</a>
                     @endauth

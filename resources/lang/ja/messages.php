@@ -7,5 +7,7 @@ return [
     'Password' => 'パスワード',
     'Remember Me' => 'ログイン情報を記憶する',
     'Confirm Password' => 'パスワード（確認用）',
-    'register' => '登録'
+    'register' => '登録',
+    'Logout' => 'ログアウト'
+
 ];
