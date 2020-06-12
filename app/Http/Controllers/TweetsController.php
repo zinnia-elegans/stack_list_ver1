@@ -39,14 +39,14 @@ class TweetsController extends Controller
         // ユーザーのタイムライン取得
         $tweets_obj = $twitter->get('statuses/user_timeline', $params);
 
+        $twitter_arr = json_decode(json_encode($tweets_obj),true);
         $pattern = '/#今日の積み上げ+/';
         // textカラムを抽出
-        $columns = array_column($tweets_obj, 'text','created_at');
+        $columns = array_column($twitter_arr,'text','created_at');
         // 配列からワードを抽出
         $result = preg_grep($pattern, $columns);
         // 5件のみ取得
         $stacklist = array_slice($result,0,5);
-
         // 「日」が直後にある、1~3桁までの数字以外のもの全てを""に置き換え
         $stacklistdays = preg_replace("/([^0-9][^{1,3}])+?[^日]/u", "", $stacklist);
         // 最初の配列の数字のみ取得
