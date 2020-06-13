@@ -44,7 +44,6 @@
                     <ul class="navbar-nav justify-content-end">
                     @auth
                         <li class="nav-item m-3 pt-2"><a class="nav-link" href="{{ url('/users/admin')}}"><h5>#ユーザー画面</h5><span class="sr-only"></span></a>
-                        <li class="nav-item m-3 pt-2"><a class="nav-link" href="{{ url('/users/continue')}}"><h5>#積み上げ日数</h5><span class="sr-only"></span></a>
                     @endauth
                         <li class="nav-item m-3 pt-2"><a class="nav-link" href="{{ url('about')}}"><h5>#このサイトについて</h5></a></li>
                     <!-- Authentication Links -->

@@ -49,15 +49,17 @@
       <div class="card">
         <div class="card-body">
           <h5 class="text-center pt-3"><strong>#積み上げリスト</strong></h5>
-          @foreach ($stacklist as $tweet)
-                <div class="card p-3">
+          @foreach ($tweets_obj as $tweet)
+            @if(preg_match('/#今日の積み上げ+/', $tweet->text)==1)
+                <div class="card p-3" id="loopCount">
                   <div class="media">
                     <div class="media-body">
-                        <h6 class="d-inline text-secondary">{{ date('Y/m/d',strtotime($tweet)) }}</h6>
-                        <p class="mt-3 mb-0">{{ $tweet }}</p>
+                        <h6 class="d-inline text-secondary">{{ date('Y/m/d',strtotime($tweet->created_at)) }}</h6>
+                        <p class="mt-3 mb-0">{{ $tweet->text }}</p>
                     </div>
                   </div>
                 </div>
+              @endif
           @endforeach
         </div>
       </div>

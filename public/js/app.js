@@ -57104,6 +57104,32 @@ $(function () {
     $('#addTweet').text('#今日の積み上げ ');
   });
 });
+$(function () {
+  var tweetContent = $("#loopCount").length;
+  $("#loopCount").each(function () {
+    var Num = 5,
+        gtNum = Num - 1;
+    $(this).find('#more_btn').show();
+    $(this).find('#close_btn').hide();
+    $(this).find("li:not(:lt(" + Num + "))").hide();
+    $('#more_btn'), click(function () {
+      Num += 3;
+      $(this).find("li:not(:lt(" + Num + "))").slidedown();
+
+      if (listContents <= Num) {
+        var Num = 5,
+            gtNum = Num - 1;
+        $('#more_btn').hide();
+        $('#close_btn').show();
+        $('#close_btn').click(function () {
+          $(this).parent().find("li:gt(" + gtNum + ")").slideUp();
+          $(this).hide();
+          $('#more_btn').show();
+        });
+      }
+    });
+  });
+});
 
 /***/ }),
 
