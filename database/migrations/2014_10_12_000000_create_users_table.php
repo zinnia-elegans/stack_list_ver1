@@ -15,7 +15,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id')->unique()->nullable()->comment('twitterのID');
+            $table->string('twitter_id')->unique()->comment('twitterのID');
+            $table->string('twitter_name')->nullable()->comment('twitterのID');
+            $table->string('twitter_icon')->nullable()->comment('twitterのID');
             $table->string('name')->nullable()->comment('表示名');
             $table->string('screen_name')->nullable()->comment('アカウント名');
             $table->string('email')->nullable('email');
