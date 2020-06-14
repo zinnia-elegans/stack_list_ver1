@@ -1,4 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
@@ -10756,7 +10755,7 @@ a.text-dark:focus {
 }
 
 .text-hide {
-  font: 0/0 a;
+  font: 00 a;
   color: transparent;
   text-shadow: none;
   background-color: transparent;
@@ -10831,9 +10830,6 @@ a.text-dark:focus {
     page-break-after: avoid;
   }
 
-@page {
-    size: a3;
-}
 
   body {
     min-width: 992px !important;
