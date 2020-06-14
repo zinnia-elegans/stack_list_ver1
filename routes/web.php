@@ -10,9 +10,9 @@ Auth::routes();
 Route::get('/','TweetsController@home')->name('home');
 Route::get('/about', 'TweetsController@about');
 // TwitterOAuth認証
-Route::get('/oauth', 'Auth\LoginController@redirectToProvider');
+Route::get('/oauth', 'Auth\LoginController@login');
 //Callback用のルーティング
-Route::get('/users/admin/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('/users/admin/callback', 'Auth\LoginController@callBack');
  
 // 認証後
 Route::group(['middleware' => 'auth'], function () {

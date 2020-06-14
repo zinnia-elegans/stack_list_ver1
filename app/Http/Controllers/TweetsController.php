@@ -9,12 +9,20 @@ use App\Models\User;
 use App\Models\Day;
 use Storage;
 use DateTime;
+use Auth;
 
 class TweetsController extends Controller
 {
    
     public function index(Request $request, User $user)
     {
+        $user = Auth::user();
+        $twitter_user = new TwitterOAuth(
+            config('twitter.consumer_key'),
+            config('twitter.consumer_secret'),
+            $user->twitter_oauth_token,
+            $user->twitter_oauth_token_secret
+        );
         // ツイッターに投稿
         $tweet = $request->tweet;
         \Twitter::post('statuses/update', array("status" => $tweet));
@@ -23,7 +31,10 @@ class TweetsController extends Controller
         
         $params = array('count' => 20, 'exclude_replies' => true, 'screen_name' => $user, 'include_rts' => false);
         // ユーザーのタイムライン取得
-        $tweets_obj = \Twitter::get('statuses/user_timeline', $params);
+        $tweets_obj = $twitter_user->get('statuses/user_timeline', $params);
+
+        dd($twitter_user);
+
         
         // JSONに変換し、配列に変換
         $twitter_arr = json_decode(json_encode($tweets_obj),true);
@@ -73,5 +84,3 @@ class TweetsController extends Controller
 
    
 }
-
-

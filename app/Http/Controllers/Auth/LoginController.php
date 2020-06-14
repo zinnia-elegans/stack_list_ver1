@@ -19,50 +19,63 @@ class LoginController extends Controller
 
     protected $redirectTo = 'users/admin';
 
+    private $consumerKey = 'd9ktYK8Pj12uAiBB6qX4wZGwD';
+    private $consumerSecret = 'X2j9gdo1TjtfQLN86c43zk1KJCwLsJOfSlCHHMwVBUJS47eMsh';
+    private $callBackUrl = 'http://127.0.0.1:8000/users/admin/callback';
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    public function redirectToProvider(){
-        return Socialite::driver('twitter')->redirect();
+    public function login() {
+
+        $connection = new TwitterOAuth($this->consumerKey, $this->consumerSecret);
+
+        // 認証URLを取得するためのリクエストトークンの生成
+        $request_token = $connection->oauth('oauth/request_token', array('oauth_callback' => $this->callBackUrl));
+        $url = $connection->url('oauth/authorize', array('oauth_token' => $request_token['oauth_token']));
+
+        return redirect($url);
     }
 
-    public function handleProviderCallback(){
+    public function callBack(Request $request, User $user){
+        //認証トークン取得
+        $oauth_token = $request->input('oauth_token');
+        $oauth_verifier = $request->input('oauth_verifier');
+    
+        $twitter = new TwitterOAuth(
+            config('twitter.consumer_key'),
+            config('twitter.consumer_secret'),
+            $oauth_token,
+            $oauth_verifier
+        );
+    
+        //'oauth/access_token'はアクセストークンを取得するためのAPIのリソース
+        $accessToken = $twitter->oauth('oauth/access_token', array('oauth_token' => $oauth_token, 'oauth_verifier' => $oauth_verifier));
 
-        $twitterUser = Socialite::driver('twitter')->user();
-        $twitter_id = $twitterUser->nickname; //ツイッターID
-        $twitter_name = $twitterUser->name; //表示名
-		$twitter_icon = $twitterUser->avatar_original; //アイコン画像のURLを保存する
+        $authUser = User::where('user_id', $user->id)->first();
 
-        // 各自ログイン処理 初回はDBに登録、2回目以降は認証のみ
-        // twitter_idがDBに登録されているかチェック
-        // されていればログイン処理のみ、いなければDBに新規登録
-        $user = User::where('twitter_id', $twitter_id)->first();
-        if ($user) {
+            User::create([
+                'user_id' => $user->id,
+                'screen_name' => $user->name
+            ]);
 
-        }else{
-            $user = User::create([
-                'twitter_id' => $twitter_id,
-                'twitter_name' => $twitter_name,
-				'twitter_icon' => $twitter_icon,
-          ]);
-        }
-        Auth::login($user);
 
-        return redirect('/users/admin');
+        Auth::login($authUser, true);
+
+        //セッションにアクセストークンを登録
+        session()->put('accessToken', $accessToken);
+    
+        return redirect('users/admin');
     }
 
-    // logout
-    public function logout(Request $request){
+    public function logout(){
+        //セッションクリア
+        session()->flush();
         Auth::logout();
+        //OAuthログイン画面にリダイレクト
         return redirect('/');
     }
-
-
-
-
-
-
 
 }
