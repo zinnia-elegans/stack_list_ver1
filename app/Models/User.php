@@ -17,7 +17,6 @@ class User extends Authenticatable
         'screen_name',
         'email',
         'password',
-        'twitter_id'
     ];
 
     protected $hidden = [

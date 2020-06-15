@@ -54,12 +54,12 @@ class LoginController extends Controller
         //'oauth/access_token'はアクセストークンを取得するためのAPIのリソース
         $accessToken = $twitter->oauth('oauth/access_token', array('oauth_token' => $oauth_token, 'oauth_verifier' => $oauth_verifier));
 
-        $authUser = User::where('user_id', $user->id)->first();
-
             User::create([
                 'user_id' => $user->id,
                 'screen_name' => $user->name
             ]);
+
+            $authUser = User::where('user_id', $user->id)->first();
 
 
         Auth::login($authUser, true);
