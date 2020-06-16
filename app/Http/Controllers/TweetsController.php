@@ -60,8 +60,6 @@ class TweetsController extends Controller
         $date = array($stack);
         $stacklistday = $date[0][0][0];
 
-        dd($stacklist);
-
         $day = Day::select('day')->get();
 
         return view('users.admin', [
