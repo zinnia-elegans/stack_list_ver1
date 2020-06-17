@@ -11,7 +11,7 @@
                         <p class="py-3">まずトップページのログインボタンから、SNS認証を使ってログインします。</p>
                         <p class="py-3">認証ライブラリはTwitterOAuthを使用しています。</p>
                         <p class="py-3">認証後、ユーザーページに飛ぶと、取得したユーザー情報を反映したページが出てきます。</p>
-                        <p class="py-3">ツイッターに投稿するボタンを押すと、実際にツイッターに投稿することができます。</p>
+                        <p class="py-3">「ツイッターに投稿する」ボタンを押すと、実際にツイッターに投稿することができます。</p>
                         <img style="width:40%;" src="https://zinnia-elegans.s3.us-east-2.amazonaws.com/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88+2020-06-13+21.30.54.png" alt="twitter投稿">
 
                         <h3 class="my-3 text-muted border-bottom border-primary">積み上げ日数自動表示</h3>
